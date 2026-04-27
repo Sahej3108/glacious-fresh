@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glacious Fresh – Delivering Fresh, Pan-India</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ice: #e8f6ff;
+  --frost: #b8e4f9;
+  --cyan: #00c6e0;
+  --green: #2ecc71;
+  --green-dark: #1fa85c;
+  --blue: #0077b6;
+  --blue-dark: #005a8e;
+  --dark: #050d18;
+  --dark2: #0a1628;
+  --mid: #0f2240;
+  --card: rgba(255,255,255,0.05);
+  --border: rgba(255,255,255,0.1);
+  --text: #c8ddf0;
+  --white: #ffffff;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--dark);
+  color:var(--white);
+  overflow-x:hidden;
+  min-height:100vh;
+}
+
+/* ── NOISE TEXTURE OVERLAY ── */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:9999;
+  opacity:.5;
+}
+
+/* ── BACKGROUND MESH ── */
+.bg-mesh{
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(0,198,224,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 90%, rgba(0,119,182,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 50% 50%, rgba(46,204,113,0.06) 0%, transparent 70%),
+    var(--dark);
+  pointer-events:none;
+  z-index:0;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;width:100%;z-index:1000;
+  background:rgba(5,13,24,0.88);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(0,198,224,0.15);
+  transition:all .3s;
+}
+.nav-inner{
+  max-width:1280px;margin:auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2rem;height:72px;
+}
+.logo{
+  display:flex;align-items:center;gap:.75rem;
+  text-decoration:none;
+  font-family:'Syne',sans-serif;
+  font-weight:800;font-size:1.3rem;
+  color:var(--white);letter-spacing:1px;
+}
+.logo-icon{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--green);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;font-weight:800;color:#050d18;
+  border:2px solid var(--green-dark);
+  flex-shrink:0;
+}
+.logo-text span{color:var(--cyan);}
+.logo-sub{
+  display:block;font-size:.62rem;font-weight:400;
+  color:var(--text);letter-spacing:.5px;margin-top:-2px;
+  font-family:'DM Sans',sans-serif;
+}
+.nav-links{display:flex;align-items:center;gap:.25rem;}
+.nav-links a{
+  color:var(--text);text-decoration:none;
+  font-size:.88rem;font-weight:500;letter-spacing:.3px;
+  padding:.5rem .9rem;border-radius:8px;
+  transition:all .2s;cursor:pointer;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--white);background:rgba(0,198,224,0.12);}
+.nav-cta{
+  background:linear-gradient(135deg,var(--cyan),var(--blue));
+  color:#050d18!important;font-weight:700!important;
+  padding:.5rem 1.2rem!important;border-radius:8px!important;
+}
+.nav-cta:hover{opacity:.9;transform:translateY(-1px);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--white);border-radius:2px;transition:.3s;}
+.mobile-menu{
+  display:none;position:fixed;top:72px;left:0;width:100%;
+  background:rgba(5,13,24,.97);backdrop-filter:blur(20px);
+  padding:1rem 2rem 2rem;z-index:999;
+  border-bottom:1px solid rgba(0,198,224,0.15);
+  flex-direction:column;gap:.5rem;
+}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{
+  color:var(--text);text-decoration:none;font-size:1rem;
+  padding:.75rem 1rem;border-radius:8px;transition:.2s;cursor:pointer;
+}
+.mobile-menu a:hover,.mobile-menu a.active{color:var(--white);background:rgba(0,198,224,0.12);}
+
+/* ── PAGES ── */
+.page{display:none;position:relative;z-index:1;}
+.page.active{display:block;}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:7rem 2rem 4rem;
+  position:relative;overflow:hidden;
+}
+.hero-inner{max-width:1280px;margin:auto;width:100%;}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(0,198,224,0.1);border:1px solid rgba(0,198,224,0.3);
+  border-radius:100px;padding:.4rem 1rem;
+  font-size:.78rem;font-weight:600;color:var(--cyan);
+  letter-spacing:.5px;margin-bottom:1.5rem;
+}
+.hero-badge::before{content:'❄';font-size:.9rem;}
+h1{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:clamp(2.4rem,5vw,4rem);line-height:1.1;
+  margin-bottom:1.5rem;
+}
+h1 .line1{display:block;color:var(--white);}
+h1 .line2{
+  display:block;
+  background:linear-gradient(135deg,var(--cyan),var(--green));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-desc{
+  color:var(--text);font-size:1.05rem;line-height:1.8;
+  max-width:500px;margin-bottom:2.5rem;
+}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn-primary{
+  background:linear-gradient(135deg,var(--cyan),var(--blue));
+  color:#050d18;font-weight:700;font-size:.95rem;
+  padding:.85rem 2rem;border-radius:10px;
+  border:none;cursor:pointer;text-decoration:none;
+  transition:all .25s;display:inline-flex;align-items:center;gap:.5rem;
+  font-family:'DM Sans',sans-serif;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,198,224,0.35);}
+.btn-outline{
+  background:transparent;
+  color:var(--white);font-weight:600;font-size:.95rem;
+  padding:.85rem 2rem;border-radius:10px;
+  border:1px solid rgba(255,255,255,0.2);cursor:pointer;
+  text-decoration:none;transition:all .25s;display:inline-flex;align-items:center;gap:.5rem;
+  font-family:'DM Sans',sans-serif;
+}
+.btn-outline:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,198,224,0.05);}
+.hero-stats{
+  display:flex;gap:2.5rem;margin-top:3rem;flex-wrap:wrap;
+}
+.stat{border-left:2px solid var(--cyan);padding-left:1rem;}
+.stat-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--white);}
+.stat-num span{color:var(--cyan);}
+.stat-label{font-size:.8rem;color:var(--text);margin-top:.1rem;}
+
+/* Truck visual */
+.hero-visual{position:relative;}
+.truck-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:20px;overflow:hidden;
+  position:relative;
+}
+.truck-card img{width:100%;display:block;border-radius:20px;}
+.truck-card::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top, rgba(5,13,24,.6) 0%, transparent 50%);
+  border-radius:20px;
+}
+.truck-badge-float{
+  position:absolute;bottom:1.5rem;left:1.5rem;z-index:2;
+  background:rgba(5,13,24,.85);backdrop-filter:blur(12px);
+  border:1px solid rgba(0,198,224,0.3);border-radius:12px;
+  padding:.75rem 1.2rem;display:flex;align-items:center;gap:.75rem;
+}
+.truck-badge-float .icon{font-size:1.5rem;}
+.truck-badge-float .info strong{display:block;font-size:.85rem;font-weight:700;}
+.truck-badge-float .info span{font-size:.72rem;color:var(--cyan);}
+
+/* Floating ice crystals */
+.ice-float{
+  position:absolute;border-radius:50%;
+  background:radial-gradient(circle,rgba(0,198,224,0.2),transparent);
+  animation:float 6s ease-in-out infinite;pointer-events:none;
+}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-20px) rotate(10deg);}}
+
+/* ── SECTION COMMON ── */
+section{padding:5rem 2rem;}
+.container{max-width:1280px;margin:auto;}
+.section-tag{
+  display:inline-block;
+  font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--cyan);margin-bottom:1rem;
+}
+.section-title{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:clamp(1.8rem,3.5vw,2.8rem);line-height:1.2;
+  margin-bottom:1rem;
+}
+.section-desc{color:var(--text);font-size:1rem;line-height:1.8;max-width:600px;}
+.divider{
+  width:60px;height:3px;border-radius:2px;
+  background:linear-gradient(90deg,var(--cyan),var(--green));
+  margin:1rem 0 2rem;
+}
+
+/* ── MARQUEE ── */
+.marquee-wrap{
+  background:rgba(0,198,224,0.08);
+  border-top:1px solid rgba(0,198,224,0.15);
+  border-bottom:1px solid rgba(0,198,224,0.15);
+  overflow:hidden;padding:.75rem 0;
+}
+.marquee-track{
+  display:flex;white-space:nowrap;
+  animation:marquee 20s linear infinite;
+}
+.marquee-track span{
+  font-size:.85rem;font-weight:600;color:var(--cyan);
+  padding:0 2rem;letter-spacing:.5px;
+}
+.marquee-track span::before{content:'❄ ';opacity:.6;}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* ── SERVICES ── */
+.services-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:1.5rem;margin-top:3rem;
+}
+.service-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:16px;padding:2rem;
+  transition:all .3s;position:relative;overflow:hidden;
+}
+.service-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--cyan),var(--green));
+  transform:scaleX(0);transform-origin:left;transition:.3s;
+}
+.service-card:hover{border-color:rgba(0,198,224,0.35);transform:translateY(-4px);}
+.service-card:hover::before{transform:scaleX(1);}
+.service-icon{
+  width:56px;height:56px;border-radius:14px;
+  background:rgba(0,198,224,0.12);border:1px solid rgba(0,198,224,0.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.6rem;margin-bottom:1.25rem;
+}
+.service-card h3{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:.75rem;}
+.service-card p{color:var(--text);font-size:.9rem;line-height:1.7;}
+
+/* ── HOW IT WORKS ── */
+.how-bg{background:rgba(255,255,255,0.02);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;margin-top:3rem;position:relative;}
+.steps::before{
+  content:'';position:absolute;top:2.5rem;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(0,198,224,0.3),transparent);
+}
+.step{text-align:center;position:relative;}
+.step-num{
+  width:50px;height:50px;border-radius:50%;
+  background:linear-gradient(135deg,var(--cyan),var(--blue));
+  color:#050d18;font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;
+  display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;
+  position:relative;z-index:1;
+  box-shadow:0 0 20px rgba(0,198,224,0.3);
+}
+.step h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:.5rem;}
+.step p{color:var(--text);font-size:.88rem;line-height:1.7;}
+
+/* ── COVERAGE ── */
+.coverage-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:3rem;}
+.india-map{position:relative;text-align:center;}
+.india-map svg{width:100%;max-width:400px;filter:drop-shadow(0 0 30px rgba(0,198,224,0.2));}
+.states-list{
+  display:grid;grid-template-columns:1fr 1fr;gap:.75rem;
+}
+.state-chip{
+  background:rgba(0,198,224,0.08);border:1px solid rgba(0,198,224,0.15);
+  border-radius:8px;padding:.5rem .85rem;
+  font-size:.82rem;color:var(--text);
+  display:flex;align-items:center;gap:.5rem;
+}
+.state-chip::before{content:'📍';font-size:.75rem;}
+
+/* ── ABOUT ── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.about-img{position:relative;}
+.about-img img{width:100%;border-radius:20px;display:block;}
+.about-img-badge{
+  position:absolute;bottom:-1.5rem;right:-1.5rem;
+  background:linear-gradient(135deg,var(--cyan),var(--blue));
+  color:#050d18;border-radius:16px;padding:1.25rem 1.5rem;
+  font-family:'Syne',sans-serif;font-weight:800;text-align:center;
+  box-shadow:0 10px 30px rgba(0,198,224,0.3);
+}
+.about-img-badge .num{font-size:2rem;display:block;line-height:1;}
+.about-img-badge .lbl{font-size:.72rem;font-weight:600;opacity:.85;}
+.values{margin-top:2rem;display:flex;flex-direction:column;gap:1rem;}
+.value-item{display:flex;gap:1rem;align-items:flex-start;}
+.value-icon{
+  width:40px;height:40px;border-radius:10px;flex-shrink:0;
+  background:rgba(46,204,113,0.12);border:1px solid rgba(46,204,113,0.2);
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+}
+.value-text strong{display:block;font-size:.92rem;font-weight:600;margin-bottom:.25rem;}
+.value-text p{color:var(--text);font-size:.85rem;line-height:1.6;}
+
+/* ── FAQ ── */
+.faq-list{max-width:800px;margin:3rem auto 0;display:flex;flex-direction:column;gap:1rem;}
+.faq-item{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;
+}
+.faq-q{
+  width:100%;background:none;border:none;color:var(--white);
+  font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:600;
+  padding:1.25rem 1.5rem;text-align:left;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;gap:1rem;
+  transition:.2s;
+}
+.faq-q:hover{color:var(--cyan);}
+.faq-q .chevron{
+  width:24px;height:24px;border-radius:50%;
+  background:rgba(0,198,224,0.1);border:1px solid rgba(0,198,224,0.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.8rem;flex-shrink:0;transition:transform .3s;
+}
+.faq-item.open .faq-q .chevron{transform:rotate(180deg);}
+.faq-a{
+  max-height:0;overflow:hidden;transition:max-height .35s ease,padding .3s;
+  color:var(--text);font-size:.9rem;line-height:1.8;padding:0 1.5rem;
+}
+.faq-item.open .faq-a{max-height:300px;padding:0 1.5rem 1.25rem;}
+
+/* ── CONTACT ── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:3rem;}
+.contact-info{display:flex;flex-direction:column;gap:1.5rem;}
+.contact-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:1.5rem;
+  display:flex;gap:1rem;align-items:flex-start;
+  transition:.2s;
+}
+.contact-card:hover{border-color:rgba(0,198,224,0.3);}
+.contact-card .icon{
+  width:46px;height:46px;border-radius:12px;flex-shrink:0;
+  background:rgba(0,198,224,0.1);border:1px solid rgba(0,198,224,0.2);
+  display:flex;align-items:center;justify-content:center;font-size:1.2rem;
+}
+.contact-card h4{font-weight:700;font-size:.9rem;margin-bottom:.35rem;color:var(--cyan);}
+.contact-card p,.contact-card a{color:var(--text);font-size:.88rem;line-height:1.6;text-decoration:none;}
+.contact-card a:hover{color:var(--cyan);}
+.contact-form{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:16px;padding:2rem;
+}
+.contact-form h3{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:1.5rem;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.form-group{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem;}
+.form-group label{font-size:.82rem;font-weight:600;color:var(--text);}
+.form-group input,.form-group textarea,.form-group select{
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);
+  border-radius:8px;padding:.75rem 1rem;color:var(--white);
+  font-family:'DM Sans',sans-serif;font-size:.9rem;outline:none;
+  transition:.2s;
+}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--cyan);}
+.form-group textarea{resize:vertical;min-height:100px;}
+.form-group select option{background:var(--dark2);}
+
+/* ── BOOK SHIPMENT ── */
+.book-form{
+  max-width:750px;margin:3rem auto 0;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:20px;padding:2.5rem;
+}
+.book-form h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1.3rem;margin-bottom:2rem;color:var(--cyan);}
+.form-section-label{
+  font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--cyan);margin:1.5rem 0 1rem;padding-bottom:.5rem;
+  border-bottom:1px solid rgba(0,198,224,0.15);
+}
+
+/* ── PAYMENT ── */
+.payment-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:3rem;align-items:start;}
+.qr-card{
+  background:white;border-radius:20px;padding:2rem;text-align:center;
+  box-shadow:0 20px 60px rgba(0,0,0,0.4);
+}
+.qr-card .bank-logo{font-size:1.5rem;font-weight:800;color:#004b8d;margin-bottom:.5rem;}
+.qr-card .acct-name{font-size:.85rem;font-weight:700;color:#333;letter-spacing:.5px;margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid #eee;}
+.qr-card .scan-title{font-size:1.5rem;font-weight:900;color:#004b8d;margin-bottom:1rem;}
+.qr-placeholder{
+  width:200px;height:200px;margin:0 auto 1rem;
+  background:linear-gradient(135deg,#1a1a2e,#16213e);
+  border-radius:8px;display:flex;align-items:center;justify-content:center;
+  font-size:5rem;border:3px solid #004b8d;
+  position:relative;overflow:hidden;
+}
+.qr-placeholder::before{
+  content:'';position:absolute;inset:8px;
+  background:repeating-conic-gradient(#000 0% 25%,#fff 0% 50%) 0 0 / 8px 8px;
+  opacity:0.12;
+}
+.upi-id{font-size:1rem;font-weight:800;color:#004b8d;margin:.75rem 0 1rem;}
+.payment-apps{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;margin-top:.75rem;}
+.payment-app{
+  background:#f0f4ff;border-radius:8px;padding:.35rem .75rem;
+  font-size:.75rem;font-weight:700;color:#333;
+}
+.bank-details-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:20px;padding:2rem;
+}
+.bank-details-card h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;margin-bottom:1.5rem;}
+.bank-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1rem 0;border-bottom:1px solid var(--border);
+}
+.bank-row:last-of-type{border-bottom:none;}
+.bank-row .label{font-size:.82rem;color:var(--text);}
+.bank-row .value{font-size:.9rem;font-weight:600;color:var(--white);}
+.copy-btn{
+  background:rgba(0,198,224,0.1);border:1px solid rgba(0,198,224,0.2);
+  color:var(--cyan);font-size:.72rem;font-weight:600;
+  padding:.3rem .6rem;border-radius:6px;cursor:pointer;transition:.2s;
+  font-family:'DM Sans',sans-serif;
+}
+.copy-btn:hover{background:rgba(0,198,224,0.2);}
+.note-box{
+  background:rgba(46,204,113,0.08);border:1px solid rgba(46,204,113,0.2);
+  border-radius:10px;padding:1rem 1.25rem;margin-top:1.5rem;
+  font-size:.85rem;color:var(--text);line-height:1.7;
+}
+.note-box strong{color:var(--green);}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--dark2);border-top:1px solid var(--border);
+  padding:3rem 2rem 1.5rem;position:relative;z-index:1;
+}
+.footer-inner{max-width:1280px;margin:auto;}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
+.footer-brand .logo{margin-bottom:1rem;}
+.footer-brand p{color:var(--text);font-size:.88rem;line-height:1.8;}
+.footer-col h4{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;margin-bottom:1.25rem;color:var(--white);}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.6rem;}
+.footer-col ul li a{color:var(--text);text-decoration:none;font-size:.88rem;transition:.2s;cursor:pointer;}
+.footer-col ul li a:hover{color:var(--cyan);}
+.footer-bottom{
+  border-top:1px solid var(--border);padding-top:1.5rem;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+}
+.footer-bottom p{color:var(--text);font-size:.82rem;}
+.footer-bottom span{color:var(--cyan);}
+
+/* ── TOAST ── */
+.toast{
+  position:fixed;bottom:2rem;right:2rem;z-index:9998;
+  background:rgba(46,204,113,0.95);color:#050d18;
+  padding:.75rem 1.5rem;border-radius:10px;font-weight:700;font-size:.9rem;
+  transform:translateY(100px);opacity:0;transition:.3s;
+  pointer-events:none;
+}
+.toast.show{transform:translateY(0);opacity:1;}
+
+/* ── PAGE TRANSITIONS ── */
+.page{animation:fadeUp .4s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── SUCCESS MSG ── */
+.success-msg{
+  background:rgba(46,204,113,0.1);border:1px solid rgba(46,204,113,0.3);
+  border-radius:10px;padding:1rem 1.5rem;color:var(--green);
+  font-weight:600;margin-top:1rem;display:none;
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .hero-grid,.about-grid,.coverage-grid,.contact-grid,.payment-grid{grid-template-columns:1fr;}
+  .form-row{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .hero-visual{order:-1;}
+  .steps::before{display:none;}
+  .about-img-badge{bottom:.5rem;right:.5rem;}
+}
+@media(max-width:600px){
+  .footer-grid{grid-template-columns:1fr;}
+  .hero-stats{gap:1.5rem;}
+  .book-form{padding:1.5rem;}
+  .payment-grid{grid-template-columns:1fr;}
+  .qr-placeholder{width:170px;height:170px;}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-mesh"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="logo" onclick="showPage('home')" style="cursor:pointer;">
+      <div class="logo-icon">G</div>
+      <div class="logo-text">
+        Glacious Fresh™
+        <span class="logo-sub">By Gale Worldwide Movers</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a onclick="showPage('home')" class="active" id="nav-home">Home</a>
+      <a onclick="showPage('about')" id="nav-about">About Us</a>
+      <a onclick="showPage('services')" id="nav-services">Services</a>
+      <a onclick="showPage('faq')" id="nav-faq">FAQ</a>
+      <a onclick="showPage('payment')" id="nav-payment">Payment</a>
+      <a onclick="showPage('contact')" id="nav-contact">Contact</a>
+      <a onclick="showPage('book')" id="nav-book" class="nav-cta">Book Shipment</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a onclick="showPage('home');toggleMenu()">Home</a>
+  <a onclick="showPage('about');toggleMenu()">About Us</a>
+  <a onclick="showPage('services');toggleMenu()">Services</a>
+  <a onclick="showPage('faq');toggleMenu()">FAQ</a>
+  <a onclick="showPage('payment');toggleMenu()">Payment</a>
+  <a onclick="showPage('contact');toggleMenu()">Contact</a>
+  <a onclick="showPage('book');toggleMenu()">Book Shipment</a>
+</div>
+
+<!-- ═══════════════ HOME PAGE ═══════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">Pan-India Cold Chain Logistics</div>
+          <h1>
+            <span class="line1">India's Trusted</span>
+            <span class="line2">Frozen Transport</span>
+            <span class="line1">Network</span>
+          </h1>
+          <p class="hero-desc">
+            Glacious Fresh delivers temperature-sensitive goods across every corner of India — from food processing plants to retail chains — in fully air-conditioned, sealed trucks. Fresh guarantee, every time.
+          </p>
+          <div class="hero-btns">
+            <button class="btn-primary" onclick="showPage('book')">❄ Book a Shipment</button>
+            <button class="btn-outline" onclick="showPage('services')">Our Services →</button>
+          </div>
+          <div class="hero-stats">
+            <div class="stat">
+              <div class="stat-num">28<span>+</span></div>
+              <div class="stat-label">States Covered</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">24<span>/7</span></div>
+              <div class="stat-label">Operations</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">0<span>°C</span></div>
+              <div class="stat-label">Temp Control</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="truck-card">
+            <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=800&q=80" alt="Glacious Fresh AC Truck" onerror="this.style.background='linear-gradient(135deg,#0a1628,#0f2240)';this.style.minHeight='300px';">
+            <div class="truck-badge-float">
+              <div class="icon">🌡️</div>
+              <div class="info">
+                <strong>Temperature Controlled</strong>
+                <span>Maintained 0°C – -20°C</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span>Frozen Food Transport</span>
+      <span>Pan-India Coverage</span>
+      <span>AC Refrigerated Trucks</span>
+      <span>Cold Chain Logistics</span>
+      <span>Temperature Guaranteed</span>
+      <span>Gale Worldwide Movers</span>
+      <span>Faridabad HQ</span>
+      <span>Glacious Fresh™</span>
+      <span>Frozen Food Transport</span>
+      <span>Pan-India Coverage</span>
+      <span>AC Refrigerated Trucks</span>
+      <span>Cold Chain Logistics</span>
+      <span>Temperature Guaranteed</span>
+      <span>Gale Worldwide Movers</span>
+      <span>Faridabad HQ</span>
+      <span>Glacious Fresh™</span>
+    </div>
+  </div>
+
+  <!-- WHY US -->
+  <section>
+    <div class="container">
+      <div class="section-tag">Why Choose Us</div>
+      <h2 class="section-title">Built for the Cold Chain</h2>
+      <div class="divider"></div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">❄️</div>
+          <h3>Guaranteed Temperature</h3>
+          <p>Our trucks maintain consistent cold chain from 0°C to -20°C with continuous monitoring — ensuring your frozen goods arrive in perfect condition.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🗺️</div>
+          <h3>Pan-India Network</h3>
+          <p>From Jammu & Kashmir to Kerala, from Gujarat to Arunachal Pradesh — we reach every state across India with our growing fleet.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🔒</div>
+          <h3>Safe & Sealed</h3>
+          <p>Tamper-proof sealed containers with hygienic interiors. Your cargo is secure, clean, and untouched from pickup to delivery.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📞</div>
+          <h3>Dedicated Support</h3>
+          <p>A real human answers every call. Our operations team is available everyday from 10 AM to 8 PM to assist with any query or update.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">⚡</div>
+          <h3>Reliable Schedules</h3>
+          <p>Planned routes, reliable timelines and no last-minute surprises. We respect your supply chain as much as you do.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🏢</div>
+          <h3>Gale Worldwide Backing</h3>
+          <p>Backed by Gale Worldwide Movers Pvt. Ltd., a trusted name in logistics — giving you the confidence of an established pan-India mover.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-bg">
+    <div class="container">
+      <div class="section-tag">Process</div>
+      <h2 class="section-title">How It Works</h2>
+      <div class="divider"></div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Book Online</h3>
+          <p>Fill out our simple booking form with pickup, delivery details and cargo info.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Get Confirmed</h3>
+          <p>Our team reviews your request and confirms the shipment with pricing.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>We Pickup</h3>
+          <p>Our AC truck arrives at your location and loads your frozen goods securely.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <h3>In Transit</h3>
+          <p>Your cargo travels in monitored cold conditions throughout the journey.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <h3>Delivered Fresh</h3>
+          <p>Safe, sealed, and cold — delivered to your destination on schedule.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section style="padding:4rem 2rem;">
+    <div class="container">
+      <div style="background:linear-gradient(135deg,rgba(0,198,224,0.12),rgba(0,119,182,0.2));border:1px solid rgba(0,198,224,0.25);border-radius:20px;padding:3rem 2rem;text-align:center;">
+        <h2 style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;margin-bottom:1rem;">Ready to Ship Frozen Goods?</h2>
+        <p style="color:var(--text);margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto;">Get in touch with our team today. We'll plan the best cold-chain route across India for you.</p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+          <button class="btn-primary" onclick="showPage('book')">Book a Shipment</button>
+          <button class="btn-outline" onclick="showPage('contact')">Contact Us</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ═══════════════ ABOUT PAGE ═══════════════ -->
+<div class="page" id="page-about">
+  <section style="padding:8rem 2rem 4rem;">
+    <div class="container">
+      <div class="section-tag">About Us</div>
+      <div class="about-grid">
+        <div>
+          <h2 class="section-title">Glacious Fresh™ — Cold Chain, Simplified</h2>
+          <div class="divider"></div>
+          <p style="color:var(--text);line-height:1.9;margin-bottom:1rem;">
+            Glacious Fresh is a specialised frozen transport brand by <strong style="color:var(--white);">Gale Worldwide Movers Pvt. Ltd.</strong>, headquartered in Faridabad, Haryana. We built Glacious Fresh with one singular purpose — to make pan-India frozen food transport reliable, efficient and accessible.
+          </p>
+          <p style="color:var(--text);line-height:1.9;margin-bottom:2rem;">
+            Our refrigerated AC truck fleet is purpose-built for the Indian market — designed to handle extreme climate variation across regions while maintaining a consistent cold environment for your cargo. Whether it's a full truck load from a processing unit in Punjab or a smaller consignment to a retailer in Tamil Nadu — we handle it with the same precision and care.
+          </p>
+          <div class="values">
+            <div class="value-item">
+              <div class="value-icon">❄️</div>
+              <div class="value-text">
+                <strong>Temperature Integrity</strong>
+                <p>We never compromise on the cold chain — from loading to final delivery, temperature is monitored and maintained.</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <div class="value-icon">🤝</div>
+              <div class="value-text">
+                <strong>Client-First Approach</strong>
+                <p>Your cargo is our priority. Transparent communication, no hidden charges, and real-time updates on your shipment.</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <div class="value-icon">🌍</div>
+              <div class="value-text">
+                <strong>Pan-India Reach</strong>
+                <p>Our network spans all 28 states and 8 union territories — making Glacious Fresh truly pan-Indian.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="about-img">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80" alt="Glacious Fresh Operations" onerror="this.style.background='linear-gradient(135deg,#0a1628,#0f2240)';this.style.minHeight='400px';">
+          <div class="about-img-badge">
+            <span class="num">Pan</span>
+            <span class="lbl">India Coverage</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-bg" style="padding:4rem 2rem;">
+    <div class="container">
+      <div class="section-tag">Our Parent Company</div>
+      <h2 class="section-title">Gale Worldwide Movers Pvt. Ltd.</h2>
+      <div class="divider"></div>
+      <p style="color:var(--text);line-height:1.9;max-width:750px;margin-bottom:2rem;">
+        Gale Worldwide Movers is a registered private limited company based in Faridabad, with experience in domestic and international logistics. Glacious Fresh is the company's dedicated cold-chain vertical, combining Gale's logistics expertise with specialised refrigeration technology to offer India's businesses a dependable frozen transport partner.
+      </p>
+      <div style="display:flex;gap:2rem;flex-wrap:wrap;">
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem 2rem;text-align:center;">
+          <div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--cyan);">100%</div>
+          <div style="font-size:.85rem;color:var(--text);margin-top:.25rem;">Temperature Controlled Fleet</div>
+        </div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem 2rem;text-align:center;">
+          <div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--cyan);">28+</div>
+          <div style="font-size:.85rem;color:var(--text);margin-top:.25rem;">States Covered</div>
+        </div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem 2rem;text-align:center;">
+          <div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--cyan);">10AM–8PM</div>
+          <div style="font-size:.85rem;color:var(--text);margin-top:.25rem;">Daily Operations Support</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════ SERVICES PAGE ═══════════════ -->
+<div class="page" id="page-services">
+  <section style="padding:8rem 2rem 4rem;">
+    <div class="container">
+      <div class="section-tag">What We Offer</div>
+      <h2 class="section-title">Frozen Food Transport Services</h2>
+      <div class="divider"></div>
+      <p class="section-desc" style="margin-bottom:3rem;">
+        Glacious Fresh specialises exclusively in frozen food transport — delivering goods that require continuous refrigeration safely across India.
+      </p>
+
+      <!-- Main Service -->
+      <div style="background:linear-gradient(135deg,rgba(0,198,224,0.1),rgba(0,119,182,0.15));border:1px solid rgba(0,198,224,0.25);border-radius:20px;padding:2.5rem;margin-bottom:2rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;">
+        <div>
+          <div style="font-size:3rem;margin-bottom:1rem;">🧊</div>
+          <h3 style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;margin-bottom:1rem;">Frozen Food Transport</h3>
+          <p style="color:var(--text);line-height:1.8;margin-bottom:1.5rem;">
+            Our core service. We transport frozen food items — ice cream, frozen vegetables, seafood, meat, dairy products, and processed foods — in fully sealed, AC-refrigerated trucks. Temperature is maintained from 0°C to -20°C throughout the journey, with no breaks in the cold chain.
+          </p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:.6rem;">
+            <li style="color:var(--text);font-size:.9rem;">✅ Full Truck Load (FTL) options</li>
+            <li style="color:var(--text);font-size:.9rem;">✅ Part Load / LTL options</li>
+            <li style="color:var(--text);font-size:.9rem;">✅ Pan-India destinations</li>
+            <li style="color:var(--text);font-size:.9rem;">✅ Hygienic sealed containers</li>
+            <li style="color:var(--text);font-size:.9rem;">✅ Continuous temperature monitoring</li>
+          </ul>
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80" alt="Frozen Food Transport" style="width:100%;border-radius:16px;" onerror="this.style.background='#0f2240';this.style.minHeight='250px';this.style.borderRadius='16px';this.style.display='block';">
+        </div>
+      </div>
+
+      <!-- Sub-types -->
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🐟</div>
+          <h3>Seafood & Meat</h3>
+          <p>Transport of fresh catch, frozen seafood, poultry, and red meat with strict hygiene and temperature protocols to prevent spoilage.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🥦</div>
+          <h3>Frozen Vegetables & Fruits</h3>
+          <p>Blanched and flash-frozen vegetables and fruits moved efficiently from farms and processors to distributors and retailers.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🍦</div>
+          <h3>Ice Cream & Dairy</h3>
+          <p>Sub-zero transport for ice cream, frozen yogurt, butter, and other dairy products that require strict temperature maintenance.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🏭</div>
+          <h3>Processed Frozen Foods</h3>
+          <p>Frozen snacks, ready-to-eat meals, parathas, nuggets, and other FMCG frozen products moved in bulk, across India.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Coverage Map -->
+  <section class="how-bg" style="padding:4rem 2rem;">
+    <div class="container">
+      <div class="section-tag">Reach</div>
+      <h2 class="section-title">Pan-India Coverage</h2>
+      <div class="divider"></div>
+      <p style="color:var(--text);margin-bottom:2rem;">We deliver to all 28 states and 8 union territories across India.</p>
+      <div class="states-list">
+        <!-- All states -->
+        <div class="state-chip">Andhra Pradesh</div>
+        <div class="state-chip">Arunachal Pradesh</div>
+        <div class="state-chip">Assam</div>
+        <div class="state-chip">Bihar</div>
+        <div class="state-chip">Chhattisgarh</div>
+        <div class="state-chip">Goa</div>
+        <div class="state-chip">Gujarat</div>
+        <div class="state-chip">Haryana</div>
+        <div class="state-chip">Himachal Pradesh</div>
+        <div class="state-chip">Jharkhand</div>
+        <div class="state-chip">Karnataka</div>
+        <div class="state-chip">Kerala</div>
+        <div class="state-chip">Madhya Pradesh</div>
+        <div class="state-chip">Maharashtra</div>
+        <div class="state-chip">Manipur</div>
+        <div class="state-chip">Meghalaya</div>
+        <div class="state-chip">Mizoram</div>
+        <div class="state-chip">Nagaland</div>
+        <div class="state-chip">Odisha</div>
+        <div class="state-chip">Punjab</div>
+        <div class="state-chip">Rajasthan</div>
+        <div class="state-chip">Sikkim</div>
+        <div class="state-chip">Tamil Nadu</div>
+        <div class="state-chip">Telangana</div>
+        <div class="state-chip">Tripura</div>
+        <div class="state-chip">Uttar Pradesh</div>
+        <div class="state-chip">Uttarakhand</div>
+        <div class="state-chip">West Bengal</div>
+        <div class="state-chip">Delhi (NCT)</div>
+        <div class="state-chip">Jammu & Kashmir</div>
+        <div class="state-chip">Ladakh</div>
+        <div class="state-chip">Chandigarh</div>
+        <div class="state-chip">Puducherry</div>
+        <div class="state-chip">Lakshadweep</div>
+        <div class="state-chip">Andaman & Nicobar</div>
+        <div class="state-chip">Dadra & NH / DD</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════ FAQ PAGE ═══════════════ -->
+<div class="page" id="page-faq">
+  <section style="padding:8rem 2rem 5rem;">
+    <div class="container" style="text-align:center;">
+      <div class="section-tag">FAQ</div>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="divider" style="margin:1rem auto 0;"></div>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What types of frozen goods do you transport?
+          <span class="chevron">▾</span>
+        </button>
+        <div class="faq-a">We transport all categories of frozen food including seafood, meat, poultry, ice cream, frozen vegetables, dairy products, processed frozen foods, ready-to-eat meals, and other perishable goods requiring refrigeration from 0°C to -20°C.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do you cover all states in India?
+          <span class="chevron">▾</span>
+        </button>
+        <div class="faq-a">Yes. Glacious Fresh operates a pan-India network covering all 28 states and 8 union territories. From Faridabad (HQ) we route shipments to any destination across the country.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What temperature range do your trucks maintain?
+          <span class="chevron">▾</span>
+        </button>
+        <div class="faq-a">Our AC refrigerated trucks are capable of maintaining temperatures ranging from 0°C (chilled) to -20°C (deep frozen), ensuring the integrity of all categories of frozen goods throughout transit.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How do I book a shipment?
+          <span class="chevron">▾</span>
+        </button>
+        <div class="faq-a">You can book using our online booking form on this website, or contact us directly by phone at +91 8826175064 or by email at rekha@galebestways.com. Our team will confirm the booking, route plan, and pricing within 24 hours.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do you offer part-load (LTL) or full truck load (FTL)?
+          <span class="chevron">▾</span>
+        </button>
+        <div class="faq-a">Yes, we offer both options. If your cargo doesn't require a full truck, we can accommodate part-load shipments. Contact us with your cargo details and we'll suggest the most cost-efficient option for your route.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How do I make payment?
+          <span class="chevron">▾</span>
+        </button>
+        <div class="faq-a">Payment can be made via bank transfer to Gale Worldwide Movers P Ltd's SBI account, or via UPI using the ID galeworldwide@sbi. You can scan the QR code on our Payment page for instant UPI payment. We accept GPay, PhonePe, Paytm, BHIM, and all UPI apps.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What are your operating hours?
+          <span class="chevron">▾</span>
+        </button>
+        <div class="faq-a">Our office operates every day from 10:00 AM to 8:00 PM IST. You can reach us by phone at +91 8826175064 or email at rekha@galebestways.com during these hours.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Where is your office located?
+          <span class="chevron">▾</span>
+        </button>
+        <div class="faq-a">Our headquarters is at Gale House, 5NH/87, NIT Faridabad – 121001, Haryana, India.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is Glacious Fresh an independent company?
+          <span class="chevron">▾</span>
+        </button>
+        <div class="faq-a">Glacious Fresh is the cold-chain logistics brand of Gale Worldwide Movers Pvt. Ltd. — a registered private limited company. Glacious Fresh is dedicated exclusively to frozen food and temperature-sensitive transport.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════ PAYMENT PAGE ═══════════════ -->
+<div class="page" id="page-payment">
+  <section style="padding:8rem 2rem 5rem;">
+    <div class="container">
+      <div class="section-tag">Payment</div>
+      <h2 class="section-title">Bank & UPI Payment Details</h2>
+      <div class="divider"></div>
+      <p style="color:var(--text);margin-bottom:1rem;">All payments should be made to <strong style="color:var(--white);">Gale Worldwide Movers P Ltd</strong> — the parent company of Glacious Fresh.</p>
+
+      <div class="payment-grid">
+        <!-- QR CARD -->
+        <div>
+          <div class="qr-card">
+            <div class="bank-logo">● SBI</div>
+            <div class="acct-name">GALE WORLDWIDE MOVERS P LTD</div>
+            <div class="scan-title">SCAN &amp; PAY</div>
+            <!-- QR Code visual representation -->
+            <div style="width:220px;height:220px;margin:0 auto 1rem;border:3px solid #000;border-radius:4px;padding:8px;background:#fff;">
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+                <!-- Corner squares -->
+                <rect x="5" y="5" width="25" height="25" fill="none" stroke="#000" stroke-width="4"/>
+                <rect x="9" y="9" width="17" height="17" fill="#000"/>
+                <rect x="70" y="5" width="25" height="25" fill="none" stroke="#000" stroke-width="4"/>
+                <rect x="74" y="9" width="17" height="17" fill="#000"/>
+                <rect x="5" y="70" width="25" height="25" fill="none" stroke="#000" stroke-width="4"/>
+                <rect x="9" y="74" width="17" height="17" fill="#000"/>
+                <!-- Data pattern simulation -->
+                <rect x="35" y="5" width="4" height="4" fill="#000"/>
+                <rect x="43" y="5" width="4" height="4" fill="#000"/>
+                <rect x="51" y="5" width="4" height="4" fill="#000"/>
+                <rect x="59" y="5" width="4" height="4" fill="#000"/>
+                <rect x="35" y="13" width="4" height="4" fill="#000"/>
+                <rect x="51" y="13" width="4" height="4" fill="#000"/>
+                <rect x="59" y="13" width="4" height="4" fill="#000"/>
+                <rect x="35" y="21" width="4" height="4" fill="#000"/>
+                <rect x="43" y="21" width="4" height="4" fill="#000"/>
+                <rect x="5" y="35" width="4" height="4" fill="#000"/>
+                <rect x="13" y="35" width="4" height="4" fill="#000"/>
+                <rect x="21" y="35" width="4" height="4" fill="#000"/>
+                <rect x="35" y="35" width="4" height="4" fill="#000"/>
+                <rect x="43" y="35" width="4" height="4" fill="#000"/>
+                <rect x="51" y="35" width="4" height="4" fill="#000"/>
+                <rect x="59" y="35" width="4" height="4" fill="#000"/>
+                <rect x="67" y="35" width="4" height="4" fill="#000"/>
+                <rect x="75" y="35" width="4" height="4" fill="#000"/>
+                <rect x="83" y="35" width="4" height="4" fill="#000"/>
+                <rect x="91" y="35" width="4" height="4" fill="#000"/>
+                <rect x="5" y="43" width="4" height="4" fill="#000"/>
+                <rect x="21" y="43" width="4" height="4" fill="#000"/>
+                <rect x="43" y="43" width="4" height="4" fill="#000"/>
+                <rect x="59" y="43" width="4" height="4" fill="#000"/>
+                <rect x="75" y="43" width="4" height="4" fill="#000"/>
+                <rect x="91" y="43" width="4" height="4" fill="#000"/>
+                <rect x="5" y="51" width="4" height="4" fill="#000"/>
+                <rect x="13" y="51" width="4" height="4" fill="#000"/>
+                <rect x="21" y="51" width="4" height="4" fill="#000"/>
+                <rect x="35" y="51" width="4" height="4" fill="#000"/>
+                <rect x="43" y="51" width="4" height="4" fill="#000"/>
+                <rect x="51" y="51" width="4" height="4" fill="#000"/>
+                <rect x="67" y="51" width="4" height="4" fill="#000"/>
+                <rect x="83" y="51" width="4" height="4" fill="#000"/>
+                <rect x="5" y="59" width="4" height="4" fill="#000"/>
+                <rect x="13" y="59" width="4" height="4" fill="#000"/>
+                <rect x="35" y="59" width="4" height="4" fill="#000"/>
+                <rect x="51" y="59" width="4" height="4" fill="#000"/>
+                <rect x="59" y="59" width="4" height="4" fill="#000"/>
+                <rect x="75" y="59" width="4" height="4" fill="#000"/>
+                <rect x="91" y="59" width="4" height="4" fill="#000"/>
+                <rect x="35" y="67" width="4" height="4" fill="#000"/>
+                <rect x="43" y="67" width="4" height="4" fill="#000"/>
+                <rect x="59" y="67" width="4" height="4" fill="#000"/>
+                <rect x="67" y="67" width="4" height="4" fill="#000"/>
+                <rect x="83" y="67" width="4" height="4" fill="#000"/>
+                <rect x="35" y="75" width="4" height="4" fill="#000"/>
+                <rect x="51" y="75" width="4" height="4" fill="#000"/>
+                <rect x="67" y="75" width="4" height="4" fill="#000"/>
+                <rect x="75" y="75" width="4" height="4" fill="#000"/>
+                <rect x="91" y="75" width="4" height="4" fill="#000"/>
+                <rect x="35" y="83" width="4" height="4" fill="#000"/>
+                <rect x="43" y="83" width="4" height="4" fill="#000"/>
+                <rect x="51" y="83" width="4" height="4" fill="#000"/>
+                <rect x="59" y="83" width="4" height="4" fill="#000"/>
+                <rect x="83" y="83" width="4" height="4" fill="#000"/>
+                <rect x="35" y="91" width="4" height="4" fill="#000"/>
+                <rect x="59" y="91" width="4" height="4" fill="#000"/>
+                <rect x="75" y="91" width="4" height="4" fill="#000"/>
+                <rect x="91" y="91" width="4" height="4" fill="#000"/>
+                <!-- SBI logo hint in center -->
+                <text x="50" y="54" text-anchor="middle" font-size="6" fill="#004b8d" font-weight="bold">SBI</text>
+              </svg>
+            </div>
+            <div class="upi-id">UPI ID: galeworldwide@sbi</div>
+            <p style="font-size:.75rem;color:#555;margin-bottom:.75rem;">Scan with any UPI app to pay instantly</p>
+            <div class="payment-apps">
+              <span class="payment-app">📱 GPay</span>
+              <span class="payment-app">💜 PhonePe</span>
+              <span class="payment-app">🔵 Paytm</span>
+              <span class="payment-app">🟠 BHIM</span>
+              <span class="payment-app">🔴 WhatsApp Pay</span>
+              <span class="payment-app">🟢 YONO SBI</span>
+            </div>
+          </div>
+          <div class="note-box" style="margin-top:1.5rem;">
+            <strong>⚠️ Important:</strong> Always share the payment screenshot/UTR number with our team at <strong style="color:var(--cyan);">rekha@galebestways.com</strong> or WhatsApp <strong style="color:var(--cyan);">+91 8826175064</strong> after payment for confirmation.
+          </div>
+        </div>
+
+        <!-- BANK DETAILS -->
+        <div>
+          <div class="bank-details-card">
+            <h3>🏦 Bank Transfer Details</h3>
+            <div class="bank-row">
+              <span class="label">Account Name</span>
+              <div style="display:flex;align-items:center;gap:.5rem;">
+                <span class="value">Gale Worldwide Movers P Ltd</span>
+                <button class="copy-btn" onclick="copyText('Gale Worldwide Movers P Ltd')">Copy</button>
+              </div>
+            </div>
+            <div class="bank-row">
+              <span class="label">Bank Name</span>
+              <span class="value">State Bank of India (SBI)</span>
+            </div>
+            <div class="bank-row">
+              <span class="label">Account Number</span>
+              <div style="display:flex;align-items:center;gap:.5rem;">
+                <span class="value" id="acct-num">Contact us for account details</span>
+                <button class="copy-btn" onclick="copyText(document.getElementById('acct-num').textContent)">Copy</button>
+              </div>
+            </div>
+            <div class="bank-row">
+              <span class="label">IFSC Code</span>
+              <div style="display:flex;align-items:center;gap:.5rem;">
+                <span class="value" id="ifsc-code">Contact us for IFSC</span>
+                <button class="copy-btn" onclick="copyText(document.getElementById('ifsc-code').textContent)">Copy</button>
+              </div>
+            </div>
+            <div class="bank-row">
+              <span class="label">UPI ID</span>
+              <div style="display:flex;align-items:center;gap:.5rem;">
+                <span class="value">galeworldwide@sbi</span>
+                <button class="copy-btn" onclick="copyText('galeworldwide@sbi')">Copy</button>
+              </div>
+            </div>
+            <div class="bank-row">
+              <span class="label">Payment Reference</span>
+              <span class="value" style="color:var(--cyan);">Use your booking/invoice number</span>
+            </div>
+          </div>
+
+          <div style="background:rgba(0,198,224,0.07);border:1px solid rgba(0,198,224,0.2);border-radius:14px;padding:1.5rem;margin-top:1.5rem;">
+            <h4 style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:1rem;font-size:.95rem;">📋 Payment Instructions</h4>
+            <ul style="list-style:none;display:flex;flex-direction:column;gap:.6rem;">
+              <li style="color:var(--text);font-size:.88rem;">1. Make payment via UPI or bank transfer to the details above.</li>
+              <li style="color:var(--text);font-size:.88rem;">2. Note down the UTR / transaction reference number.</li>
+              <li style="color:var(--text);font-size:.88rem;">3. Share the screenshot + booking details via email or WhatsApp.</li>
+              <li style="color:var(--text);font-size:.88rem;">4. Our team will confirm receipt and proceed with the shipment.</li>
+              <li style="color:var(--text);font-size:.88rem;">5. An invoice will be issued within 24 hours of confirmed payment.</li>
+            </ul>
+          </div>
+
+          <div style="background:rgba(46,204,113,0.07);border:1px solid rgba(46,204,113,0.2);border-radius:14px;padding:1.5rem;margin-top:1rem;">
+            <p style="color:var(--text);font-size:.88rem;line-height:1.7;">
+              <strong style="color:var(--green);">Need bank details?</strong> For security, full account number and IFSC are shared directly. Contact us at <strong style="color:var(--white);">+91 8826175064</strong> or <strong style="color:var(--white);">rekha@galebestways.com</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════ CONTACT PAGE ═══════════════ -->
+<div class="page" id="page-contact">
+  <section style="padding:8rem 2rem 5rem;">
+    <div class="container">
+      <div class="section-tag">Get In Touch</div>
+      <h2 class="section-title">Contact Glacious Fresh</h2>
+      <div class="divider"></div>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-card">
+            <div class="icon">📍</div>
+            <div>
+              <h4>Office Address</h4>
+              <p>Gale House, 5NH/87, NIT<br>Faridabad – 121001<br>Haryana, India</p>
+            </div>
+          </div>
+          <div class="contact-card">
+            <div class="icon">📞</div>
+            <div>
+              <h4>Phone</h4>
+              <a href="tel:+918826175064">+91 8826175064</a>
+            </div>
+          </div>
+          <div class="contact-card">
+            <div class="icon">📧</div>
+            <div>
+              <h4>Email</h4>
+              <a href="mailto:rekha@galebestways.com">rekha@galebestways.com</a>
+            </div>
+          </div>
+          <div class="contact-card">
+            <div class="icon">🕐</div>
+            <div>
+              <h4>Operating Hours</h4>
+              <p>Everyday: 10:00 AM – 8:00 PM IST</p>
+            </div>
+          </div>
+          <div class="contact-card">
+            <div class="icon">💳</div>
+            <div>
+              <h4>UPI Payment</h4>
+              <p>galeworldwide@sbi</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <h3>Send Us a Message</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Your Name</label>
+              <input type="text" placeholder="Full Name" id="cf-name">
+            </div>
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="tel" placeholder="+91 XXXXX XXXXX" id="cf-phone">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="your@email.com" id="cf-email">
+          </div>
+          <div class="form-group">
+            <label>Subject</label>
+            <select id="cf-subject">
+              <option value="">Select a subject</option>
+              <option>Shipment Enquiry</option>
+              <option>Pricing & Rates</option>
+              <option>Track My Shipment</option>
+              <option>Payment Related</option>
+              <option>Partnership</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea placeholder="Describe your requirement..." id="cf-message"></textarea>
+          </div>
+          <button class="btn-primary" style="width:100%;justify-content:center;" onclick="submitContact()">Send Message →</button>
+          <div class="success-msg" id="contact-success">✅ Message sent! We'll get back to you within 24 hours.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════ BOOK SHIPMENT PAGE ═══════════════ -->
+<div class="page" id="page-book">
+  <section style="padding:8rem 2rem 5rem;">
+    <div class="container">
+      <div class="section-tag">Book Now</div>
+      <h2 class="section-title">Book a Frozen Shipment</h2>
+      <div class="divider"></div>
+      <p style="color:var(--text);max-width:600px;margin-bottom:2rem;">
+        Fill in the details below and our team will get back to you within 24 hours with confirmation and pricing.
+      </p>
+
+      <div class="book-form">
+        <h3>❄ Shipment Booking Request</h3>
+
+        <div class="form-section-label">Contact Information</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name / Company</label>
+            <input type="text" placeholder="Your name or company" id="bk-name">
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="+91 XXXXX XXXXX" id="bk-phone">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="your@email.com" id="bk-email">
+        </div>
+
+        <div class="form-section-label">Shipment Details</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Pickup City / State</label>
+            <input type="text" placeholder="e.g. Faridabad, Haryana" id="bk-pickup">
+          </div>
+          <div class="form-group">
+            <label>Delivery City / State</label>
+            <input type="text" placeholder="e.g. Mumbai, Maharashtra" id="bk-delivery">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Type of Frozen Goods</label>
+            <select id="bk-goods">
+              <option value="">Select goods type</option>
+              <option>Seafood / Fish</option>
+              <option>Meat / Poultry</option>
+              <option>Ice Cream / Dairy</option>
+              <option>Frozen Vegetables / Fruits</option>
+              <option>Processed Frozen Foods</option>
+              <option>Other (mention in notes)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Estimated Weight (kg)</label>
+            <input type="number" placeholder="e.g. 500" id="bk-weight">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Load Type</label>
+            <select id="bk-loadtype">
+              <option value="">Select load type</option>
+              <option>Full Truck Load (FTL)</option>
+              <option>Part Truck Load (LTL)</option>
+              <option>Not sure – advise me</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Preferred Pickup Date</label>
+            <input type="date" id="bk-date">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Additional Notes</label>
+          <textarea placeholder="Any special requirements, storage temperature preferences, or other details..." id="bk-notes"></textarea>
+        </div>
+
+        <button class="btn-primary" style="width:100%;justify-content:center;font-size:1rem;" onclick="submitBooking()">
+          Submit Booking Request →
+        </button>
+        <div class="success-msg" id="book-success">
+          ✅ Booking request received! Our team will contact you within 24 hours with confirmation and pricing.
+        </div>
+        <p style="color:var(--text);font-size:.8rem;margin-top:1rem;text-align:center;">
+          Or call us directly at <a href="tel:+918826175064" style="color:var(--cyan);">+91 8826175064</a> · Everyday 10 AM–8 PM
+        </p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo" style="margin-bottom:1rem;">
+          <div class="logo-icon">G</div>
+          <div class="logo-text">
+            Glacious Fresh™
+            <span class="logo-sub">By Gale Worldwide Movers</span>
+          </div>
+        </div>
+        <p>India's trusted frozen food transport network. Delivering Fresh — Pan India, Every Day.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a onclick="showPage('home')">Home</a></li>
+          <li><a onclick="showPage('about')">About Us</a></li>
+          <li><a onclick="showPage('services')">Services</a></li>
+          <li><a onclick="showPage('faq')">FAQ</a></li>
+          <li><a onclick="showPage('payment')">Payment</a></li>
+          <li><a onclick="showPage('contact')">Contact</a></li>
+          <li><a onclick="showPage('book')">Book Shipment</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a>Frozen Food Transport</a></li>
+          <li><a>Full Truck Load</a></li>
+          <li><a>Part Truck Load</a></li>
+          <li><a>Pan-India Coverage</a></li>
+          <li><a>Cold Chain Logistics</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+918826175064">+91 8826175064</a></li>
+          <li><a href="mailto:rekha@galebestways.com">rekha@galebestways.com</a></li>
+          <li><a>Gale House, 5NH/87, NIT</a></li>
+          <li><a>Faridabad – 121001, Haryana</a></li>
+          <li><a>Everyday: 10 AM – 8 PM</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 <span>Glacious Fresh™</span> by Gale Worldwide Movers Pvt. Ltd. All rights reserved.</p>
+      <p style="font-size:.8rem;">Delivering Fresh · Pan-India · Cold Chain Experts</p>
+    </div>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── ROUTING ──
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(a => a.classList.remove('active'));
+  const navEl = document.getElementById('nav-' + name);
+  if (navEl) navEl.classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// ── HAMBURGER ──
+function toggleMenu() {
+  const m = document.getElementById('mobileMenu');
+  m.classList.toggle('open');
+}
+
+// ── FAQ ──
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// ── COPY ──
+function copyText(text) {
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('Copied: ' + text);
+  }).catch(() => {
+    showToast('Copy failed – select manually');
+  });
+}
+
+// ── TOAST ──
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ── FORMS ──
+function submitContact() {
+  const name = document.getElementById('cf-name').value.trim();
+  const phone = document.getElementById('cf-phone').value.trim();
+  const email = document.getElementById('cf-email').value.trim();
+  if (!name || !phone) { showToast('Please fill in your name and phone number'); return; }
+  document.getElementById('contact-success').style.display = 'block';
+  showToast('Message sent successfully!');
+}
+
+function submitBooking() {
+  const name = document.getElementById('bk-name').value.trim();
+  const phone = document.getElementById('bk-phone').value.trim();
+  const pickup = document.getElementById('bk-pickup').value.trim();
+  const delivery = document.getElementById('bk-delivery').value.trim();
+  if (!name || !phone || !pickup || !delivery) {
+    showToast('Please fill in all required fields');
+    return;
+  }
+  document.getElementById('book-success').style.display = 'block';
+  showToast('Booking request submitted!');
+}
+
+// ── NAV SCROLL ──
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  if (window.scrollY > 30) {
+    nav.style.background = 'rgba(5,13,24,0.97)';
+  } else {
+    nav.style.background = 'rgba(5,13,24,0.88)';
+  }
+});
+</script>
+</body>
+</html>
