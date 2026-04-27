@@ -561,6 +561,55 @@
     .feature-card { padding: 24px 20px; }
     .feature-card[style*="display:flex"] { flex-direction: row; gap: 16px; }
     .feature-icon { width: 44px; height: 44px; font-size: 20px; }
+
+    /* WHY CHOOSE US */
+    .why-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+
+    /* FEATURE CARDS ROW MODE */
+    .feature-card-row { flex-direction: row !important; display: flex !important; gap: 16px !important; align-items: flex-start !important; }
+    .feature-icon-inline { flex-shrink: 0 !important; margin-bottom: 0 !important; width: 44px !important; height: 44px !important; }
+
+    /* ABOUT STATS */
+    .about-stats-grid { grid-template-columns: 1fr 1fr !important; gap: 20px !important; padding: 32px 20px !important; }
+    .about-stats-grid > div { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 20px; }
+    .about-stats-grid > div:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.08) !important; }
+    .about-stats-grid > div:last-child { border-bottom: none; }
+    .about-stats-grid div[style*="font-size:56px"] { font-size: 40px !important; }
+
+    /* SERVICES STRIP */
+    .services-grid { grid-template-columns: 1fr !important; }
+
+    /* PROCESS STEPS */
+    .process-steps { gap: 24px; }
+    .step-num { width: 52px !important; height: 52px !important; font-size: 20px !important; }
+
+    /* TEMP BANNER */
+    .temp-banner h2 { font-size: 28px !important; }
+
+    /* TRUST STRIP */
+    .trust-strip { gap: 0; padding: 16px 4%; }
+    .trust-badge { padding: 8px 12px; }
+    .trust-badge-text .tb-name { font-size: 12px; }
+    .trust-badge-text .tb-sub { display: none; }
+
+    /* HERO TEXT */
+    .hero-badge { font-size: 10px; padding: 5px 12px; }
+    .hero h1 { font-size: 42px !important; }
+
+    /* PARTNERS */
+    #page-home > section:last-of-type div { gap: 24px !important; font-size: 18px !important; }
+
+    /* CALLBACK BAR */
+    .callback-bar { padding: 8px 4%; gap: 8px; }
+    .callback-bar p { font-size: 11px; }
+    .callback-bar span[style*="font-size:18px"] { display: none; }
+
+    /* CITIES STRIP */
+    .features > div[style*="background:var(--dark)"] { padding: 20px !important; }
+
+    /* ABOUT PAGE GRID */
+    .grid-2[style*="gap:80px"] { gap: 36px !important; }
+
   }
 
   @media (max-width: 768px) {
@@ -568,12 +617,20 @@
     .payment-instructions-grid { grid-template-columns: 1fr !important; }
   }
   @media (max-width: 480px) {
-    .hero h1 { font-size: 38px; }
+    .hero h1 { font-size: 34px !important; }
     .temp-indicators { grid-template-columns: 1fr 1fr; }
-    .track-hero h1 { font-size: 32px; }
+    .track-hero h1 { font-size: 28px; }
     .hero-stats { grid-template-columns: 1fr 1fr; }
     .stat-row { display: grid; grid-template-columns: 1fr 1fr; }
-    .about-hero h1, .service-hero h1 { font-size: 30px; }
+    .about-hero h1, .service-hero h1 { font-size: 28px; }
+    .about-stats-grid { grid-template-columns: 1fr 1fr !important; }
+    .about-stats-grid div[style*="font-size:56px"] { font-size: 32px !important; }
+    .why-grid { gap: 24px !important; }
+    .trust-badge:nth-child(n+4) { display: none; }
+    .faq-q span:first-child { font-size: 13px; }
+    section { padding: 48px 4%; }
+    .callback-bar a.cb-phone { font-size: 14px; }
+    h2 { font-size: 26px !important; }
   }
 
   @media (min-width: 769px) {
@@ -707,6 +764,24 @@
     .trust-badge:nth-child(n+5) { display: none; }
   }
 
+
+  .feature-card-row {
+    display: flex; gap: 20px; align-items: flex-start;
+  }
+  .feature-icon-inline {
+    flex-shrink: 0; margin-bottom: 0;
+  }
+
+
+  body { padding-bottom: 52px; }
+  @media (max-width: 768px) { body { padding-bottom: 48px; } }
+
+
+  @media (max-width: 768px) {
+    .cities-strip { padding: 20px 16px !important; gap: 8px !important; }
+    .cities-strip span { font-size: 12px !important; padding: 4px 10px !important; }
+  }
+
 </style>
 </head>
 <body>
@@ -838,7 +913,7 @@
     </div>
 
     <!-- India coverage visual + key reasons -->
-    <div style="display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:start;margin-bottom:56px;">
+    <div class="why-grid" style="display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:start;margin-bottom:56px;">
 
       <!-- India Map SVG -->
       <div style="background:var(--dark);border-radius:12px;padding:36px;position:relative;overflow:hidden;">
@@ -928,19 +1003,19 @@
         </svg>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px;">
           <div style="background:rgba(26,158,74,0.12);border:1px solid rgba(26,158,74,0.25);border-radius:6px;padding:12px 14px;">
-            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;color:var(--accent);">28+</div>
+            <div style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:800;font-size:28px;color:var(--accent);">28+</div>
             <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:2px;">States Covered</div>
           </div>
           <div style="background:rgba(26,158,74,0.12);border:1px solid rgba(26,158,74,0.25);border-radius:6px;padding:12px 14px;">
-            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;color:var(--accent);">200+</div>
+            <div style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:800;font-size:28px;color:var(--accent);">200+</div>
             <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:2px;">Cities Served</div>
           </div>
           <div style="background:rgba(26,158,74,0.12);border:1px solid rgba(26,158,74,0.25);border-radius:6px;padding:12px 14px;">
-            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;color:var(--accent);">500+</div>
+            <div style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:800;font-size:28px;color:var(--accent);">500+</div>
             <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:2px;">Reefer Vehicles</div>
           </div>
           <div style="background:rgba(26,158,74,0.12);border:1px solid rgba(26,158,74,0.25);border-radius:6px;padding:12px 14px;">
-            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;color:var(--accent);">48hr</div>
+            <div style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:800;font-size:28px;color:var(--accent);">48hr</div>
             <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:2px;">Pan India Reach</div>
           </div>
         </div>
@@ -948,43 +1023,43 @@
 
       <!-- Reasons grid -->
       <div style="display:flex;flex-direction:column;gap:20px;">
-        <div class="feature-card" style="display:flex;gap:20px;align-items:flex-start;">
-          <div class="feature-icon" style="flex-shrink:0;margin-bottom:0;">❄️</div>
+        <div class="feature-card feature-card-row">
+          <div class="feature-icon feature-icon-inline">❄️</div>
           <div>
             <h3 style="margin-bottom:8px;">Sub-Zero Capability</h3>
             <p>Full temperature spectrum from -25°C frozen to +15°C controlled ambient. Multi-zone vehicles handle mixed cargo in a single trip across any Indian route.</p>
           </div>
         </div>
-        <div class="feature-card" style="display:flex;gap:20px;align-items:flex-start;">
-          <div class="feature-icon" style="flex-shrink:0;margin-bottom:0;">🗺️</div>
+        <div class="feature-card feature-card-row">
+          <div class="feature-icon feature-icon-inline">🗺️</div>
           <div>
             <h3 style="margin-bottom:8px;">Pan India Road Network</h3>
             <p>Dedicated cold corridors connecting Delhi NCR, Mumbai, Bangalore, Chennai, Kolkata, Hyderabad and 200+ tier-2 and tier-3 cities. FSSAI-compliant routes nationwide.</p>
           </div>
         </div>
-        <div class="feature-card" style="display:flex;gap:20px;align-items:flex-start;">
-          <div class="feature-icon" style="flex-shrink:0;margin-bottom:0;">📡</div>
+        <div class="feature-card feature-card-row">
+          <div class="feature-icon feature-icon-inline">📡</div>
           <div>
             <h3 style="margin-bottom:8px;">Real-Time Monitoring</h3>
             <p>IoT temperature sensors log every 5 minutes. Live dashboard access 24/7. Instant alerts the moment any deviation occurs - anywhere in India.</p>
           </div>
         </div>
-        <div class="feature-card" style="display:flex;gap:20px;align-items:flex-start;">
-          <div class="feature-icon" style="flex-shrink:0;margin-bottom:0;">💊</div>
+        <div class="feature-card feature-card-row">
+          <div class="feature-icon feature-icon-inline">💊</div>
           <div>
             <h3 style="margin-bottom:8px;">Pharma Compliant</h3>
             <p>GDP-certified and CDSCO-compliant cold chain for pharmaceutical distribution across India. Trusted by leading Indian pharma companies for PAN India vaccine and medicine distribution.</p>
           </div>
         </div>
-        <div class="feature-card" style="display:flex;gap:20px;align-items:flex-start;">
-          <div class="feature-icon" style="flex-shrink:0;margin-bottom:0;">⚡</div>
+        <div class="feature-card feature-card-row">
+          <div class="feature-icon feature-icon-inline">⚡</div>
           <div>
             <h3 style="margin-bottom:8px;">Express Cold Delivery</h3>
             <p>Same-day delivery within metro cities. Next-day cold delivery to any major Indian city. Emergency dispatch from our Faridabad HQ and 8 regional cold hubs.</p>
           </div>
         </div>
-        <div class="feature-card" style="display:flex;gap:20px;align-items:flex-start;">
-          <div class="feature-icon" style="flex-shrink:0;margin-bottom:0;">🔒</div>
+        <div class="feature-card feature-card-row">
+          <div class="feature-icon feature-icon-inline">🔒</div>
           <div>
             <h3 style="margin-bottom:8px;">Chain of Custody</h3>
             <p>Complete traceability from pick-up to proof of delivery. Tamper-evident seals, digital documentation and full audit trails accepted by FSSAI and pharma regulatory authorities.</p>
@@ -994,7 +1069,7 @@
     </div>
 
     <!-- Cities strip -->
-    <div style="background:var(--dark);border-radius:10px;padding:28px 36px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;">
+    <div class="cities-strip" style="background:var(--dark);border-radius:10px;padding:28px 36px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;">
       <span style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-right:8px;">Key Hubs:</span>
       <span style="background:rgba(26,158,74,0.15);border:1px solid rgba(26,158,74,0.3);color:rgba(255,255,255,0.8);padding:5px 14px;border-radius:100px;font-size:13px;">Delhi NCR</span>
       <span style="background:rgba(26,158,74,0.15);border:1px solid rgba(26,158,74,0.3);color:rgba(255,255,255,0.8);padding:5px 14px;border-radius:100px;font-size:13px;">Mumbai</span>
@@ -1151,7 +1226,7 @@
       <div class="section-label" style="justify-content:center;">Client Stories</div>
       <h2>Trusted By <span class="accent">Industry Leaders</span></h2>
     </div>
-    <div class="grid-3">
+    <div class="grid-3 testimonials-grid">
       <div class="testimonial-card">
         <div class="stars">★★★★★</div>
         <p>"Glacious Fresh transformed our supply chain. Our organic produce reaches Mumbai and Delhi markets overnight with zero temperature excursions. Outstanding service."</p>
@@ -1192,12 +1267,12 @@
   <section style="padding:80px 5%;border-top:1px solid var(--border);">
     <p style="text-align:center;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:40px;">Trusted By Leading Brands</p>
     <div style="display:flex;gap:48px;justify-content:center;align-items:center;flex-wrap:wrap;opacity:0.4;">
-      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:24px;">NESTLÉ</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:24px;">UNILEVER</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:24px;">DANONE</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:24px;">NOVARTIS</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:24px;">MAERSK</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:24px;">DHL</div>
+      <div style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:800;font-size:24px;">NESTLÉ</div>
+      <div style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:800;font-size:24px;">UNILEVER</div>
+      <div style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:800;font-size:24px;">DANONE</div>
+      <div style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:800;font-size:24px;">NOVARTIS</div>
+      <div style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:800;font-size:24px;">MAERSK</div>
+      <div style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:800;font-size:24px;">DHL</div>
     </div>
   </section>
 
@@ -1214,7 +1289,7 @@
       <div class="footer-brand">
         <div class="nav-logo" style="margin-bottom:16px;text-decoration:none;display:flex;align-items:center;gap:12px;">
           <img src="data:image/png;base64,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" alt="Glacious Fresh Logo" style="width:48px;height:48px;border-radius:50%;object-fit:cover;">
-          <div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:20px;color:white;">Glacious Fresh™</div><div style="font-size:10px;color:var(--accent);letter-spacing:1.5px;text-transform:uppercase;">By Gale Worldwide Movers</div></div>
+          <div><div style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:800;font-size:20px;color:white;">Glacious Fresh™</div><div style="font-size:10px;color:var(--accent);letter-spacing:1.5px;text-transform:uppercase;">By Gale Worldwide Movers</div></div>
         </div>
         <p>Precision cold chain logistics for a world that demands freshness. From farm to table, from lab to patient - we keep it cold.</p>
 
@@ -1389,27 +1464,27 @@
     <div style="display:flex;gap:28px;justify-content:center;flex-wrap:wrap;">
       <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:28px 36px;min-width:160px;">
         <div style="font-size:36px;margin-bottom:12px;">🏆</div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;">HACCP</div>
+        <div style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:700;font-size:18px;">HACCP</div>
         <div style="font-size:13px;color:var(--muted);">Certified</div>
       </div>
       <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:28px 36px;min-width:160px;">
         <div style="font-size:36px;margin-bottom:12px;">💊</div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;">GDP</div>
+        <div style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:700;font-size:18px;">GDP</div>
         <div style="font-size:13px;color:var(--muted);">Pharma Compliant</div>
       </div>
       <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:28px 36px;min-width:160px;">
         <div style="font-size:36px;margin-bottom:12px;">🌿</div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;">ISO 22000</div>
+        <div style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:700;font-size:18px;">ISO 22000</div>
         <div style="font-size:13px;color:var(--muted);">Food Safety</div>
       </div>
       <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:28px 36px;min-width:160px;">
         <div style="font-size:36px;margin-bottom:12px;">🛡️</div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;">ISO 9001</div>
+        <div style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:700;font-size:18px;">ISO 9001</div>
         <div style="font-size:13px;color:var(--muted);">Quality Mgmt</div>
       </div>
       <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:28px 36px;min-width:160px;">
         <div style="font-size:36px;margin-bottom:12px;">✈️</div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;">IATA</div>
+        <div style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:700;font-size:18px;">IATA</div>
         <div style="font-size:13px;color:var(--muted);">Air Cargo Agent</div>
       </div>
     </div>
@@ -1447,27 +1522,27 @@
       </div>
       <div>
         <div style="background:var(--gray);border-radius:10px;padding:40px;">
-          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;text-transform:uppercase;margin-bottom:28px;">Our Journey</h3>
+          <h3 style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:800;font-size:28px;text-transform:uppercase;margin-bottom:28px;">Our Journey</h3>
           <div style="display:flex;flex-direction:column;gap:0;">
             <div style="display:flex;gap:20px;padding-bottom:28px;border-left:2px solid var(--green);margin-left:8px;padding-left:24px;position:relative;">
               <div style="position:absolute;left:-8px;top:0;width:16px;height:16px;border-radius:50%;background:var(--green);border:3px solid white;"></div>
-              <div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;color:var(--green);">2010</div><div style="font-size:14px;color:var(--muted);margin-top:4px;">Founded as a cold chain division of Gale Worldwide Movers. First refrigerated fleet of 12 vehicles.</div></div>
+              <div><div style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:700;font-size:18px;color:var(--green);">2010</div><div style="font-size:14px;color:var(--muted);margin-top:4px;">Founded as a cold chain division of Gale Worldwide Movers. First refrigerated fleet of 12 vehicles.</div></div>
             </div>
             <div style="display:flex;gap:20px;padding-bottom:28px;border-left:2px solid var(--green);margin-left:8px;padding-left:24px;position:relative;">
               <div style="position:absolute;left:-8px;top:0;width:16px;height:16px;border-radius:50%;background:var(--green);border:3px solid white;"></div>
-              <div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;color:var(--green);">2014</div><div style="font-size:14px;color:var(--muted);margin-top:4px;">Expanded to international cold chain. First pharma GDP certification achieved. Fleet grew to 80 vehicles.</div></div>
+              <div><div style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:700;font-size:18px;color:var(--green);">2014</div><div style="font-size:14px;color:var(--muted);margin-top:4px;">Expanded to international cold chain. First pharma GDP certification achieved. Fleet grew to 80 vehicles.</div></div>
             </div>
             <div style="display:flex;gap:20px;padding-bottom:28px;border-left:2px solid var(--green);margin-left:8px;padding-left:24px;position:relative;">
               <div style="position:absolute;left:-8px;top:0;width:16px;height:16px;border-radius:50%;background:var(--green);border:3px solid white;"></div>
-              <div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;color:var(--green);">2018</div><div style="font-size:14px;color:var(--muted);margin-top:4px;">Launched IoT temperature monitoring platform. Reached 200+ vehicles and 15-country coverage.</div></div>
+              <div><div style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:700;font-size:18px;color:var(--green);">2018</div><div style="font-size:14px;color:var(--muted);margin-top:4px;">Launched IoT temperature monitoring platform. Reached 200+ vehicles and 15-country coverage.</div></div>
             </div>
             <div style="display:flex;gap:20px;padding-bottom:28px;border-left:2px solid var(--green);margin-left:8px;padding-left:24px;position:relative;">
               <div style="position:absolute;left:-8px;top:0;width:16px;height:16px;border-radius:50%;background:var(--green);border:3px solid white;"></div>
-              <div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;color:var(--green);">2021</div><div style="font-size:14px;color:var(--muted);margin-top:4px;">Played critical role in COVID-19 vaccine cold chain distribution. Recognised by WHO partners.</div></div>
+              <div><div style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:700;font-size:18px;color:var(--green);">2021</div><div style="font-size:14px;color:var(--muted);margin-top:4px;">Played critical role in COVID-19 vaccine cold chain distribution. Recognised by WHO partners.</div></div>
             </div>
             <div style="display:flex;gap:20px;margin-left:8px;padding-left:24px;position:relative;">
               <div style="position:absolute;left:-8px;top:0;width:16px;height:16px;border-radius:50%;background:var(--accent);border:3px solid white;"></div>
-              <div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;color:var(--accent);">2025</div><div style="font-size:14px;color:var(--muted);margin-top:4px;">500+ vehicle fleet, 40 countries, 1,200 staff. Rebranded as Glacious Fresh™.</div></div>
+              <div><div style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:700;font-size:18px;color:var(--accent);">2025</div><div style="font-size:14px;color:var(--muted);margin-top:4px;">500+ vehicle fleet, 40 countries, 1,200 staff. Rebranded as Glacious Fresh™.</div></div>
             </div>
           </div>
         </div>
@@ -1475,21 +1550,21 @@
     </div>
 
     <!-- Stats -->
-    <div style="background:var(--dark);border-radius:12px;padding:60px;display:grid;grid-template-columns:repeat(4,1fr);gap:40px;margin-bottom:80px;">
+    <div class="about-stats-grid" style="background:var(--dark);border-radius:12px;padding:60px;display:grid;grid-template-columns:repeat(4,1fr);gap:40px;margin-bottom:80px;">
       <div style="text-align:center;border-right:1px solid rgba(255,255,255,0.08);">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:56px;color:var(--accent);line-height:1;">500+</div>
+        <div style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:800;font-size:56px;color:var(--accent);line-height:1;">500+</div>
         <div style="color:rgba(255,255,255,0.5);font-size:14px;margin-top:8px;">Refrigerated Vehicles</div>
       </div>
       <div style="text-align:center;border-right:1px solid rgba(255,255,255,0.08);">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:56px;color:var(--accent);line-height:1;">40+</div>
+        <div style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:800;font-size:56px;color:var(--accent);line-height:1;">40+</div>
         <div style="color:rgba(255,255,255,0.5);font-size:14px;margin-top:8px;">Countries Served</div>
       </div>
       <div style="text-align:center;border-right:1px solid rgba(255,255,255,0.08);">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:56px;color:var(--accent);line-height:1;">1.2K</div>
+        <div style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:800;font-size:56px;color:var(--accent);line-height:1;">1.2K</div>
         <div style="color:rgba(255,255,255,0.5);font-size:14px;margin-top:8px;">Team Members</div>
       </div>
       <div style="text-align:center;">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:56px;color:var(--accent);line-height:1;">99%</div>
+        <div style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:800;font-size:56px;color:var(--accent);line-height:1;">99%</div>
         <div style="color:rgba(255,255,255,0.5);font-size:14px;margin-top:8px;">Temperature Compliance</div>
       </div>
     </div>
@@ -1704,13 +1779,13 @@
           </div>
         </div>
         <div style="background:var(--gray);border-radius:10px;padding:28px;margin-top:20px;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;margin-bottom:12px;text-transform:uppercase;">Response Guarantee</div>
+          <div style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:700;font-size:18px;margin-bottom:12px;text-transform:uppercase;">Response Guarantee</div>
           <p style="font-size:14px;color:var(--muted);line-height:1.7;">We respond to all quote requests within 2 business hours. Emergency cold chain queries are answered within 30 minutes via our hotline.</p>
         </div>
       </div>
       <div>
         <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:48px;box-shadow:0 4px 24px rgba(0,0,0,0.05);">
-          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:26px;text-transform:uppercase;margin-bottom:28px;">Get A Quote</h3>
+          <h3 style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:800;font-size:26px;text-transform:uppercase;margin-bottom:28px;">Get A Quote</h3>
           <div class="form-row">
             <div class="form-group"><label>First Name</label><input type="text" placeholder="Arun"></div>
             <div class="form-group"><label>Last Name</label><input type="text" placeholder="Kumar"></div>
