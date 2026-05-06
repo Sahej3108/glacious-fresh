@@ -877,128 +877,10 @@
     <!-- India coverage visual + key reasons -->
     <div class="why-grid" style="display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:start;margin-bottom:56px;">
 
-      <!-- India Map SVG -->
+      <!-- India Map Image -->
       <div style="background:white;border:1px solid var(--border);border-radius:12px;padding:36px;position:relative;overflow:hidden;">
         <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:20px;">Pan India Coverage Network</div>
-        <svg viewBox="0 0 400 550" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
-          <defs>
-            <radialGradient id="cityGlow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#00e676" stop-opacity="0.6"/>
-              <stop offset="100%" stop-color="#00e676" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-          
-          <!-- Exact India map outline traced from reference image -->
-          <path d="M 145 25 L 160 23 L 175 22 L 190 20 L 205 22 L 220 20 L 235 22 L 250 25 L 263 32 L 273 42 L 280 54 L 285 68 L 288 82 L 290 96 L 292 110 L 294 124 L 296 138 L 299 152 L 302 166 L 306 178 L 311 188 L 316 197 L 321 205 L 326 212 L 330 218 L 334 223 L 337 228 L 339 233 L 340 238 L 340 243 L 339 248 L 337 253 L 334 257 L 330 260 L 325 262 L 320 263 L 315 264 L 310 265 L 305 266 L 300 267 L 295 268 L 290 269 L 285 270 L 280 271 L 275 272 L 270 273 L 265 274 L 260 275 L 255 276 L 250 277 L 245 278 L 240 279 L 235 280 L 230 281 L 225 282 L 220 283 L 215 284 L 210 285 L 205 286 L 200 287 L 195 288 L 190 289 L 185 290 L 180 291 L 175 292 L 170 293 L 165 294 L 160 295 L 155 296 L 150 297 L 145 298 L 140 299 L 135 300 L 130 301 L 125 302 L 120 303 L 115 305 L 110 307 L 105 310 L 100 314 L 95 318 L 90 323 L 85 329 L 82 336 L 80 343 L 79 350 L 79 357 L 80 363 L 82 368 L 85 371 L 88 372 L 92 371 L 96 368 L 100 363 L 104 357 L 108 350 L 111 343 L 113 336 L 114 329 L 114 322 L 113 315 L 111 308 L 109 301 L 107 294 L 105 287 L 103 280 L 101 273 L 99 266 L 97 259 L 95 252 L 93 245 L 91 238 L 89 231 L 87 224 L 85 217 L 83 210 L 81 203 L 79 196 L 77 189 L 75 182 L 73 175 L 71 168 L 69 161 L 67 154 L 65 147 L 63 140 L 61 133 L 59 126 L 57 119 L 55 112 L 53 105 L 51 98 L 49 91 L 48 84 L 47 77 L 47 70 L 48 63 L 50 56 L 52 49 L 55 42 L 58 36 L 62 30 L 67 25 L 73 21 L 80 19 L 90 18 L 105 18 L 120 20 L 135 22 L 145 25 Z" fill="rgba(45,198,94,0.12)" stroke="#2dc65e" stroke-width="2.5"/>
-          
-          <!-- State boundaries -->
-          <path d="M 175 60 L 210 85 L 255 110" stroke="rgba(45,198,94,0.25)" stroke-width="0.6" fill="none" opacity="0.7"/>
-          <path d="M 125 115 L 165 145 L 220 170" stroke="rgba(45,198,94,0.25)" stroke-width="0.6" fill="none" opacity="0.7"/>
-          <path d="M 85 200 L 145 235 L 260 265" stroke="rgba(45,198,94,0.25)" stroke-width="0.6" fill="none" opacity="0.7"/>
-          
-          <!-- Connection routes between major hubs -->
-          <line x1="190" y1="50" x2="125" y2="150" stroke="rgba(45,198,94,0.35)" stroke-width="1.5" stroke-dasharray="5,4"/>
-          <line x1="190" y1="50" x2="255" y2="130" stroke="rgba(45,198,94,0.35)" stroke-width="1.5" stroke-dasharray="5,4"/>
-          <line x1="125" y1="150" x2="90" y2="240" stroke="rgba(45,198,94,0.35)" stroke-width="1.5" stroke-dasharray="5,4"/>
-          <line x1="125" y1="150" x2="180" y2="230" stroke="rgba(45,198,94,0.35)" stroke-width="1.5" stroke-dasharray="5,4"/>
-          <line x1="255" y1="130" x2="315" y2="200" stroke="rgba(45,198,94,0.35)" stroke-width="1.5" stroke-dasharray="5,4"/>
-          <line x1="180" y1="230" x2="255" y2="310" stroke="rgba(45,198,94,0.35)" stroke-width="1.5" stroke-dasharray="5,4"/>
-          <line x1="255" y1="310" x2="305" y2="360" stroke="rgba(45,198,94,0.3)" stroke-width="1.5" stroke-dasharray="5,4"/>
-          
-          <!-- MAJOR HUBS (Bright green) -->
-          
-          <!-- Srinagar/Jammu - North -->
-          <circle cx="190" cy="45" r="9" fill="url(#cityGlow)"/>
-          <circle cx="190" cy="45" r="5" fill="#00e676"/>
-          <circle cx="190" cy="45" r="2.5" fill="white"/>
-          <text x="205" y="43" font-family="Arial, sans-serif" font-size="9" fill="#2dc65e" font-weight="700">Srinagar</text>
-          <text x="215" y="53" font-family="Arial, sans-serif" font-size="7" fill="#2dc65e">(Jammu)</text>
-          
-          <!-- Faridabad (HQ) - North/Delhi region -->
-          <circle cx="190" cy="80" r="11" fill="rgba(45,198,94,0.25)"/>
-          <circle cx="190" cy="80" r="6" fill="#2dc65e"/>
-          <circle cx="190" cy="80" r="3" fill="white"/>
-          <text x="203" y="78" font-family="Arial, sans-serif" font-size="10" fill="#2dc65e" font-weight="700">Faridabad</text>
-          <text x="215" y="90" font-family="Arial, sans-serif" font-size="7" fill="#2dc65e" font-style="italic">(HQ)</text>
-          
-          <!-- Vashi/Mumbai - West Coast -->
-          <circle cx="100" cy="195" r="9" fill="url(#cityGlow)"/>
-          <circle cx="100" cy="195" r="5" fill="#00e676"/>
-          <circle cx="100" cy="195" r="2.5" fill="white"/>
-          <text x="45" y="193" font-family="Arial, sans-serif" font-size="9" fill="#2dc65e" font-weight="700">Vashi (Mumbai)</text>
-          
-          <!-- SERVICE CITIES (Medium green) -->
-          
-          <!-- Delhi/NCR - Upper North -->
-          <circle cx="170" cy="105" r="7" fill="url(#cityGlow)"/>
-          <circle cx="170" cy="105" r="4" fill="#2dc65e"/>
-          <circle cx="170" cy="105" r="2" fill="white"/>
-          <text x="180" y="103" font-family="Arial, sans-serif" font-size="8.5" fill="#2dc65e">Delhi NCR</text>
-          
-          <!-- Kolkata - East -->
-          <circle cx="320" cy="175" r="7" fill="url(#cityGlow)"/>
-          <circle cx="320" cy="175" r="4" fill="#2dc65e"/>
-          <circle cx="320" cy="175" r="2" fill="white"/>
-          <text x="330" y="173" font-family="Arial, sans-serif" font-size="8.5" fill="#2dc65e">Kolkata</text>
-          
-          <!-- Bangalore - South -->
-          <circle cx="195" cy="325" r="7" fill="url(#cityGlow)"/>
-          <circle cx="195" cy="325" r="4" fill="#2dc65e"/>
-          <circle cx="195" cy="325" r="2" fill="white"/>
-          <text x="205" y="323" font-family="Arial, sans-serif" font-size="8.5" fill="#2dc65e">Bangalore</text>
-          
-          <!-- Chennai - South East -->
-          <circle cx="275" cy="365" r="7" fill="url(#cityGlow)"/>
-          <circle cx="275" cy="365" r="4" fill="#2dc65e"/>
-          <circle cx="275" cy="365" r="2" fill="white"/>
-          <text x="285" y="363" font-family="Arial, sans-serif" font-size="8.5" fill="#2dc65e">Chennai</text>
-          
-          <!-- Hyderabad - South Central -->
-          <circle cx="240" cy="275" r="7" fill="url(#cityGlow)"/>
-          <circle cx="240" cy="275" r="4" fill="#2dc65e"/>
-          <circle cx="240" cy="275" r="2" fill="white"/>
-          <text x="250" y="273" font-family="Arial, sans-serif" font-size="8.5" fill="#2dc65e">Hyderabad</text>
-          
-          <!-- Pune - West/South -->
-          <circle cx="145" cy="245" r="7" fill="url(#cityGlow)"/>
-          <circle cx="145" cy="245" r="4" fill="#2dc65e"/>
-          <circle cx="145" cy="245" r="2" fill="white"/>
-          <text x="90" y="243" font-family="Arial, sans-serif" font-size="8.5" fill="#2dc65e">Pune</text>
-          
-          <!-- Jaipur - North Central -->
-          <circle cx="165" cy="135" r="6" fill="url(#cityGlow)"/>
-          <circle cx="165" cy="135" r="3.5" fill="#2dc65e"/>
-          <circle cx="165" cy="135" r="1.8" fill="white"/>
-          <text x="135" y="133" font-family="Arial, sans-serif" font-size="8" fill="#2dc65e">Jaipur</text>
-          
-          <!-- Ahmedabad - West -->
-          <circle cx="115" cy="160" r="6" fill="url(#cityGlow)"/>
-          <circle cx="115" cy="160" r="3.5" fill="#2dc65e"/>
-          <circle cx="115" cy="160" r="1.8" fill="white"/>
-          <text x="60" y="158" font-family="Arial, sans-serif" font-size="8" fill="#2dc65e">Ahmedabad</text>
-          
-          <!-- Legend Section -->
-          <g>
-            <rect x="20" y="430" width="150" height="80" fill="white" stroke="rgba(45,198,94,0.2)" stroke-width="1" rx="6"/>
-            
-            <!-- Legend items -->
-            <circle cx="35" cy="450" r="5" fill="#00e676"/>
-            <text x="48" y="455" font-family="Arial, sans-serif" font-size="9" fill="#2dc65e" font-weight="600">Major Hubs</text>
-            
-            <circle cx="35" cy="475" r="4" fill="#2dc65e"/>
-            <text x="48" y="480" font-family="Arial, sans-serif" font-size="9" fill="#2dc65e">Service Cities</text>
-            
-            <line x1="30" y1="500" x2="45" y2="500" stroke="rgba(45,198,94,0.5)" stroke-width="2" stroke-dasharray="4,3"/>
-            <text x="48" y="505" font-family="Arial, sans-serif" font-size="9" fill="#2dc65e">Cold Routes</text>
-          </g>
-          
-          <!-- Coverage stats -->
-          <g>
-            <text x="220" y="455" font-family="Arial Narrow, Arial" font-size="14" fill="#2dc65e" font-weight="700">Pan India</text>
-            <text x="205" y="477" font-family="Arial, sans-serif" font-size="11" fill="rgba(45,198,94,0.8)">28+ States • 200+ Cities</text>
-            <text x="210" y="495" font-family="Arial, sans-serif" font-size="10" fill="rgba(45,198,94,0.7)">70+ Years Legacy</text>
-          </g>
-        </svg>
+        <img src="india-map.png" alt="Map of India - Glacious Fresh Logistics Hubs" style="width:100%;max-width:600px;height:auto;display:block;margin:0 auto;border-radius:8px;"/>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px;">
           <div style="background:var(--green-light);border:1px solid var(--border);border-radius:6px;padding:12px 14px;">
             <div style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:800;font-size:28px;color:var(--green);">28+</div>
@@ -1500,7 +1382,7 @@
   <footer>
     <div class="footer-bottom" style="border-top:1px solid rgba(45,198,94,0.2);padding:28px 0 0;">
       <span>© 2025 Glacious Fresh™ - A Gale Worldwide Movers Brand.</span>
-      <a href="#" onclick="showPage('home')" style="color:rgba(255,255,255,0.4);text-decoration:none;">← Back to Home</a>
+      <a href="#" onclick="showPage('home')" style="color:var(--muted);text-decoration:none;">← Back to Home</a>
     </div>
   </footer>
 </div>
@@ -1616,7 +1498,7 @@
   <footer>
     <div class="footer-bottom" style="border-top:1px solid rgba(45,198,94,0.2);padding:28px 0 0;">
       <span>© 2025 Glacious Fresh™ - A Gale Worldwide Movers Brand.</span>
-      <a href="#" onclick="showPage('home')" style="color:rgba(255,255,255,0.4);text-decoration:none;">← Back to Home</a>
+      <a href="#" onclick="showPage('home')" style="color:var(--muted);text-decoration:none;">← Back to Home</a>
     </div>
   </footer>
 </div>
@@ -1734,7 +1616,7 @@
   <footer>
     <div class="footer-bottom" style="border-top:1px solid rgba(45,198,94,0.2);padding:28px 0 0;">
       <span>© 2025 Glacious Fresh™ - A Gale Worldwide Movers Brand.</span>
-      <a href="#" onclick="showPage('home')" style="color:rgba(255,255,255,0.4);text-decoration:none;">← Back to Home</a>
+      <a href="#" onclick="showPage('home')" style="color:var(--muted);text-decoration:none;">← Back to Home</a>
     </div>
   </footer>
 </div>
@@ -1831,7 +1713,7 @@
   <footer>
     <div class="footer-bottom" style="border-top:1px solid rgba(45,198,94,0.2);padding:28px 0 0;">
       <span>© 2025 Glacious Fresh™ - A Gale Worldwide Movers Brand.</span>
-      <a href="#" onclick="showPage('home')" style="color:rgba(255,255,255,0.4);text-decoration:none;">← Back to Home</a>
+      <a href="#" onclick="showPage('home')" style="color:var(--muted);text-decoration:none;">← Back to Home</a>
     </div>
   </footer>
 </div>
