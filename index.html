@@ -248,9 +248,9 @@
   }
   .service-card h3 {
     font-family: 'Arial Narrow', 'Arial', sans-serif; font-weight: 700;
-    font-size: 22px; text-transform: uppercase; color: white; margin-bottom: 12px;
+    font-size: 22px; text-transform: uppercase; color: var(--text); margin-bottom: 12px;
   }
-  .service-card p { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.7; }
+  .service-card p { font-size: 14px; color: var(--muted); line-height: 1.7; }
   .service-tag {
     display: inline-block; margin-top: 20px; background: rgba(45,198,94,0.2);
     color: var(--accent); font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
@@ -283,18 +283,18 @@
     padding: 80px 5%; display: flex; align-items: center; justify-content: space-between;
     gap: 40px; flex-wrap: wrap;
   }
-  .temp-banner h2 { color: white; font-size: clamp(32px, 4vw, 52px); }
-  .temp-banner p { color: rgba(255,255,255,0.6); font-size: 16px; margin-top: 12px; max-width: 500px; }
+  .temp-banner h2 { color: var(--text); font-size: clamp(32px, 4vw, 52px); }
+  .temp-banner p { color: var(--muted); font-size: 16px; margin-top: 12px; max-width: 500px; }
   .temp-indicators { display: flex; gap: 20px; }
   .temp-card {
-    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(45,198,94,0.08); border: 1px solid rgba(45,198,94,0.15);
     border-radius: 8px; padding: 24px 28px; text-align: center; min-width: 120px;
   }
   .temp-card .val {
     font-family: 'Arial Narrow', 'Arial', sans-serif; font-weight: 800;
-    font-size: 36px; color: var(--accent); line-height: 1;
+    font-size: 36px; color: var(--green); line-height: 1;
   }
-  .temp-card .label { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 4px; }
+  .temp-card .label { font-size: 12px; color: var(--muted); margin-top: 4px; }
 
   /* TESTIMONIALS */
   .testimonials { background: var(--gray); }
@@ -339,22 +339,22 @@
     padding: 72px 5% 40px;
   }
   .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 56px; }
-  .footer-brand p { font-size: 14px; line-height: 1.8; margin: 16px 0; max-width: 280px; }
+  .footer-brand p { font-size: 14px; line-height: 1.8; margin: 16px 0; max-width: 280px; color: var(--muted); }
   .footer-col h4 {
     font-family: 'Arial Narrow', 'Arial', sans-serif; font-weight: 700; font-size: 16px;
     text-transform: uppercase; color: var(--text); letter-spacing: 1px; margin-bottom: 20px;
   }
   .footer-col a {
-    display: block; color: rgba(255,255,255,0.5); text-decoration: none;
+    display: block; color: var(--muted); text-decoration: none;
     font-size: 14px; margin-bottom: 10px; transition: color 0.2s;
   }
-  .footer-col a:hover { color: var(--accent); }
+  .footer-col a:hover { color: var(--green); }
   .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.08); padding-top: 28px;
+    border-top: 1px solid rgba(45,198,94,0.2); padding-top: 28px;
     display: flex; justify-content: space-between; align-items: center;
     font-size: 13px;
   }
-  .footer-bottom a { color: rgba(255,255,255,0.4); text-decoration: none; }
+  .footer-bottom a { color: var(--muted); text-decoration: none; }
 
   /* CONTACT PAGE */
   .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; }
@@ -1135,7 +1135,7 @@
   <div class="temp-banner">
     <div>
       <div class="section-label" style="color:rgba(255,255,255,0.5);">Our Heritage</div>
-      <h2 style="color:white;">Trusted Since <span style="color:var(--accent)">1956</span></h2>
+      <h2 style="color:var(--text);">Trusted Since <span style="color:var(--accent)">1956</span></h2>
       <p>Seven decades of excellence in logistics. Every shipment carries the weight of a legacy built on reliability, precision, and unwavering commitment.</p>
     </div>
     <div class="temp-indicators">
@@ -1238,7 +1238,7 @@
       <div class="footer-brand">
         <div class="nav-logo" style="margin-bottom:16px;text-decoration:none;display:flex;align-items:center;gap:12px;">
           <img src="data:image/png;base64,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" alt="Glacious Fresh Logo" style="width:48px;height:48px;border-radius:50%;object-fit:cover;">
-          <div><div style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:800;font-size:20px;color:white;">Glacious Fresh™</div><div style="font-size:10px;color:var(--accent);letter-spacing:1.5px;text-transform:uppercase;">Legacy Since 1956</div></div>
+          <div><div style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:800;font-size:20px;color:var(--text);">Glacious Fresh™</div><div style="font-size:10px;color:var(--accent);letter-spacing:1.5px;text-transform:uppercase;">Legacy Since 1956</div></div>
         </div>
         <p>A legacy of trust and excellence since 1956. Delivering seamless, time-critical solutions across air, ocean, and surface transport — because every shipment matters.</p>
 
@@ -1498,7 +1498,7 @@
   </div>
 
   <footer>
-    <div class="footer-bottom" style="border-top:1px solid rgba(255,255,255,0.08);padding:28px 0 0;">
+    <div class="footer-bottom" style="border-top:1px solid rgba(45,198,94,0.2);padding:28px 0 0;">
       <span>© 2025 Glacious Fresh™ - A Gale Worldwide Movers Brand.</span>
       <a href="#" onclick="showPage('home')" style="color:rgba(255,255,255,0.4);text-decoration:none;">← Back to Home</a>
     </div>
@@ -1614,7 +1614,7 @@
   </div>
 
   <footer>
-    <div class="footer-bottom" style="border-top:1px solid rgba(255,255,255,0.08);padding:28px 0 0;">
+    <div class="footer-bottom" style="border-top:1px solid rgba(45,198,94,0.2);padding:28px 0 0;">
       <span>© 2025 Glacious Fresh™ - A Gale Worldwide Movers Brand.</span>
       <a href="#" onclick="showPage('home')" style="color:rgba(255,255,255,0.4);text-decoration:none;">← Back to Home</a>
     </div>
@@ -1732,7 +1732,7 @@
   </section>
 
   <footer>
-    <div class="footer-bottom" style="border-top:1px solid rgba(255,255,255,0.08);padding:28px 0 0;">
+    <div class="footer-bottom" style="border-top:1px solid rgba(45,198,94,0.2);padding:28px 0 0;">
       <span>© 2025 Glacious Fresh™ - A Gale Worldwide Movers Brand.</span>
       <a href="#" onclick="showPage('home')" style="color:rgba(255,255,255,0.4);text-decoration:none;">← Back to Home</a>
     </div>
@@ -1829,7 +1829,7 @@
   </section>
 
   <footer>
-    <div class="footer-bottom" style="border-top:1px solid rgba(255,255,255,0.08);padding:28px 0 0;">
+    <div class="footer-bottom" style="border-top:1px solid rgba(45,198,94,0.2);padding:28px 0 0;">
       <span>© 2025 Glacious Fresh™ - A Gale Worldwide Movers Brand.</span>
       <a href="#" onclick="showPage('home')" style="color:rgba(255,255,255,0.4);text-decoration:none;">← Back to Home</a>
     </div>
@@ -2066,7 +2066,7 @@ document.querySelectorAll('a[data-page]').forEach(function(a) {
   </section>
 
   <footer>
-    <div class="footer-bottom" style="border-top:1px solid rgba(255,255,255,0.08);padding:28px 0 0;">
+    <div class="footer-bottom" style="border-top:1px solid rgba(45,198,94,0.2);padding:28px 0 0;">
       <span>© 2025 Glacious Fresh - A Gale Worldwide Movers Brand.</span>
       <a href="#" onclick="showPage('home')" style="color:rgba(255,255,255,0.4);text-decoration:none;">Back to Home</a>
     </div>
@@ -2240,7 +2240,7 @@ function toggleFaq(btn) {
   </section>
 
   <footer>
-    <div class="footer-bottom" style="border-top:1px solid rgba(255,255,255,0.08);padding:28px 0 0;">
+    <div class="footer-bottom" style="border-top:1px solid rgba(45,198,94,0.2);padding:28px 0 0;">
       <span>© 2025 Glacious Fresh - A Gale Worldwide Movers Brand.</span>
       <a href="#" onclick="showPage('home')" style="color:rgba(255,255,255,0.4);text-decoration:none;">Back to Home</a>
     </div>
