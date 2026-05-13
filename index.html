@@ -492,9 +492,10 @@
   }
   .hamburger span { width: 24px; height: 2px; background: white; border-radius: 2px; transition: all 0.3s; display: block; }
   .mobile-menu {
-    display: none; position: fixed; top: 70px; left: 0; right: 0; z-index: 999;
+    display: none; position: fixed; top: 60px; left: 0; right: 0; z-index: 999;
     background: rgba(10,26,15,0.99); border-bottom: 1px solid rgba(45,198,94,0.3);
     padding: 20px 5%; flex-direction: column; gap: 4px;
+    max-height: calc(100vh - 60px); overflow-y: auto;
   }
   .mobile-menu.open { display: flex; }
   .mobile-menu a {
@@ -781,6 +782,214 @@
   @media (max-width: 768px) {
     .cities-strip { padding: 20px 16px !important; gap: 8px !important; }
     .cities-strip span { font-size: 12px !important; padding: 4px 10px !important; }
+  }
+
+  /* ============================================
+     COMPREHENSIVE MOBILE STYLES (max-width: 768px)
+     ============================================ */
+  @media (max-width: 768px) {
+
+    /* NAV */
+    nav { height: 60px; padding: 0 4%; }
+    .nav-logo-text span:first-child { font-size: 16px; }
+    .nav-logo-icon { width: 36px; height: 36px; font-size: 12px; }
+
+    /* HERO */
+    .hero { padding: 90px 4% 50px; }
+    .hero h1 { font-size: 38px !important; line-height: 1; letter-spacing: -0.5px; }
+    .hero p { font-size: 14px !important; }
+    .hero-btns { flex-direction: column; gap: 10px; }
+    .hero-btns a, .hero-btns button { width: 100%; justify-content: center; text-align: center; }
+    .hero-stats { grid-template-columns: 1fr 1fr !important; gap: 12px !important; margin-top: 32px; }
+    .hero-stat .num { font-size: 26px !important; }
+    .hero-stat .label { font-size: 11px !important; }
+
+    /* SECTIONS */
+    section { padding: 48px 4% !important; }
+    h2 { font-size: 28px !important; }
+    h3 { font-size: 20px !important; }
+    p { font-size: 14px !important; }
+
+    /* GRIDS — all collapse to single column */
+    .grid-2, .grid-3, .grid-4,
+    [style*="grid-template-columns:repeat(3"],
+    [style*="grid-template-columns: repeat(3"],
+    [style*="grid-template-columns:repeat(4"],
+    [style*="grid-template-columns:1fr 1fr"] {
+      grid-template-columns: 1fr !important;
+      gap: 16px !important;
+    }
+
+    /* AUTO-FIT GRIDS */
+    [style*="grid-template-columns:repeat(auto-fit"] {
+      grid-template-columns: 1fr !important;
+      gap: 16px !important;
+    }
+
+    /* SERVICE CARDS */
+    .service-card { padding: 24px 20px !important; }
+    .service-full-card { grid-template-columns: 1fr !important; }
+    .service-full-card:nth-child(even) { direction: ltr !important; }
+    .service-full-img { min-height: 220px !important; }
+    .service-full-text { padding: 24px !important; }
+    .service-full-text h3 { font-size: 24px !important; }
+
+    /* FEATURE CARDS */
+    .feature-card { padding: 20px !important; }
+    .features { grid-template-columns: 1fr !important; gap: 16px !important; }
+
+    /* PAN INDIA SECTION */
+    [style*="NATIONWIDE COVERAGE"] { font-size: 10px !important; }
+    [style*="padding:100px 5%"] { padding: 48px 4% !important; }
+    [style*="padding:80px 5%"] { padding: 48px 4% !important; }
+
+    /* ABOUT SECTION */
+    .about-img { min-height: 200px !important; box-shadow: 4px 4px 0 var(--green-light) !important; }
+    .about-content { padding-left: 0 !important; }
+    .about-hero, .service-hero, .track-hero { padding: 90px 4% 50px !important; }
+    .about-hero h1, .service-hero h1, .track-hero h1 { font-size: 32px !important; }
+
+    /* ABOUT STATS */
+    .about-stats-grid { grid-template-columns: 1fr 1fr !important; padding: 24px 16px !important; }
+    .about-stats-grid div[style*="font-size:56px"] { font-size: 32px !important; }
+
+    /* STAT ROW */
+    .stat-row { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 16px !important; }
+    .stat-item .num { font-size: 32px !important; }
+
+    /* TEMP BANNER */
+    .temp-banner { flex-direction: column !important; gap: 24px !important; padding: 48px 4% !important; }
+    .temp-banner h2 { font-size: 26px !important; }
+    .temp-indicators { grid-template-columns: 1fr 1fr !important; gap: 10px !important; width: 100% !important; }
+    .temp-card { padding: 16px !important; }
+    .temp-card .val { font-size: 28px !important; }
+
+    /* PROCESS STEPS */
+    .process-steps { flex-direction: column !important; gap: 20px !important; }
+    .process-steps::before { display: none !important; }
+    .step-num { width: 48px !important; height: 48px !important; font-size: 18px !important; }
+
+    /* SERVICES PAGE TABS */
+    .service-tabs { flex-wrap: wrap !important; gap: 8px !important; }
+    .service-tab { font-size: 12px !important; padding: 8px 14px !important; }
+
+    /* WHY CHOOSE US */
+    .why-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+
+    /* TRUST STRIP */
+    .trust-strip { gap: 0 !important; padding: 12px 4% !important; flex-wrap: wrap !important; }
+    .trust-badge { padding: 8px 12px !important; }
+    .trust-badge-text .tb-name { font-size: 12px !important; }
+    .trust-badge-text .tb-sub { display: none !important; }
+    .trust-badge:nth-child(n+5) { display: none !important; }
+
+    /* CONTACT GRID */
+    .contact-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    [style*="grid-template-columns:1fr 2fr"] { grid-template-columns: 1fr !important; }
+    [style*="grid-template-columns: 1fr 2fr"] { grid-template-columns: 1fr !important; }
+
+    /* PAYMENT PAGE */
+    .payment-grid { grid-template-columns: 1fr !important; }
+    .payment-instructions-grid { grid-template-columns: 1fr !important; }
+    [style*="display:flex;justify-content:space-between"] { flex-direction: column !important; gap: 8px !important; align-items: flex-start !important; }
+
+    /* FOOTER */
+    .footer-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
+    .footer-bottom { flex-direction: column !important; gap: 12px !important; text-align: center !important; }
+    footer { padding: 48px 4% 32px !important; }
+
+    /* BUTTONS */
+    .btn-primary, .btn-outline { padding: 13px 24px !important; font-size: 14px !important; }
+    .btn-white { padding: 13px 24px !important; font-size: 14px !important; }
+
+    /* CTA SECTION */
+    .cta-section { padding: 60px 4% !important; }
+    .cta-section h2 { font-size: 28px !important; }
+
+    /* TRACKING PAGE */
+    .track-form { flex-direction: column !important; gap: 12px !important; }
+    .track-form input { width: 100% !important; }
+    .track-result { padding: 20px !important; }
+
+    /* FAQ */
+    .faq-q span:first-child { font-size: 13px !important; }
+    .faq-body p { font-size: 13px !important; }
+
+    /* SECTION LABELS */
+    .section-label { font-size: 10px !important; letter-spacing: 1.2px !important; }
+
+    /* INLINE PADDING OVERRIDES for sections using inline styles */
+    [style*="padding:80px"] { padding: 48px 4% !important; }
+    [style*="padding:100px"] { padding: 60px 4% !important; }
+    [style*="padding:60px 5%"] { padding: 40px 4% !important; }
+    [style*="padding:48px 5%"] { padding: 36px 4% !important; }
+    [style*="padding:36px"] { padding: 24px !important; }
+
+    /* INLINE max-width overrides */
+    [style*="max-width:1200px"], [style*="max-width:1400px"], [style*="max-width:900px"] {
+      max-width: 100% !important;
+    }
+
+    /* MAPS / IMAGES */
+    img { max-width: 100% !important; height: auto !important; }
+
+    /* WHATSAPP FLOAT */
+    .wa-float { width: 50px !important; height: 50px !important; bottom: 72px !important; right: 16px !important; }
+    .wa-float svg { width: 24px !important; height: 24px !important; }
+
+    /* CALLBACK BAR */
+    .callback-bar { flex-wrap: wrap !important; padding: 8px 4% !important; gap: 6px !important; justify-content: center !important; }
+    .callback-bar p { font-size: 11px !important; }
+    .callback-bar strong { display: none !important; }
+    .cb-phone { font-size: 13px !important; }
+    .cb-btn { font-size: 12px !important; padding: 6px 12px !important; }
+
+    /* CARD PADDINGS */
+    [style*="padding:32px"] { padding: 20px !important; }
+    [style*="padding:48px"] { padding: 28px !important; }
+    [style*="padding:40px"] { padding: 24px !important; }
+
+    /* MAP SECTION */
+    [style*="NATIONWIDE"] { font-size: 10px !important; }
+
+    /* NEED HELP BOX */
+    [style*="text-align:center;margin-top:48px"] { padding: 32px 20px !important; }
+    [style*="margin-top:48px"] h2 { font-size: 26px !important; }
+
+    /* BANK DETAILS flex rows */
+    [style*="display:flex;justify-content:space-between;align-items:center;padding:16px 0"] {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 6px !important;
+    }
+
+    /* MOBILE-SPECIFIC HAMBURGER MENU */
+    .mobile-menu-open .nav-links {
+      display: flex !important;
+      flex-direction: column !important;
+      position: fixed !important;
+      top: 60px !important;
+      left: 0 !important; right: 0 !important;
+      background: rgba(170,213,190,0.98) !important;
+      padding: 24px 4% !important;
+      gap: 20px !important;
+      z-index: 999 !important;
+      border-bottom: 1px solid rgba(45,198,94,0.3) !important;
+    }
+    .mobile-menu-open .nav-cta {
+      display: inline-flex !important;
+    }
+  }
+
+  /* SMALL PHONES */
+  @media (max-width: 390px) {
+    .hero h1 { font-size: 32px !important; }
+    .hero-stats { grid-template-columns: 1fr 1fr !important; }
+    h2 { font-size: 24px !important; }
+    .stat-item .num { font-size: 28px !important; }
+    .about-stats-grid div[style*="font-size:56px"] { font-size: 28px !important; }
+    .temp-card .val { font-size: 24px !important; }
+    nav { height: 56px; }
   }
 
 </style>
@@ -1942,7 +2151,7 @@ document.querySelectorAll('a[data-page]').forEach(function(a) {
   <footer>
     <div class="footer-bottom" style="border-top:1px solid rgba(45,198,94,0.2);padding:28px 0 0;">
       <span>© 2025 Glacious Fresh - A Gale Worldwide Movers Brand.</span>
-      <a href="#" onclick="showPage('home')" style="color:rgba(255,255,255,0.4);text-decoration:none;">Back to Home</a>
+      <a href="#" onclick="showPage('home')" style="color:var(--muted);text-decoration:none;">Back to Home</a>
     </div>
   </footer>
 </div>
@@ -2006,56 +2215,56 @@ function toggleFaq(btn) {
         </div>
 
         <!-- Bank Transfer Card -->
-        <div style="background:var(--dark);border-radius:14px;padding:36px;border:1px solid rgba(45,198,94,0.25);">
-          <div class="section-label" style="color:var(--accent);margin-bottom:20px;">Bank Transfer</div>
-          <div style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:800;font-size:26px;text-transform:uppercase;color:white;margin-bottom:28px;">NEFT / RTGS / IMPS</div>
+        <div style="background:var(--gray);border-radius:14px;padding:36px;border:1px solid var(--border);">
+          <div class="section-label" style="color:var(--green);margin-bottom:20px;">Bank Transfer</div>
+          <div style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:800;font-size:26px;text-transform:uppercase;color:var(--text);margin-bottom:28px;">NEFT / RTGS / IMPS</div>
 
           <!-- Bank detail rows -->
           <div style="display:flex;flex-direction:column;gap:0;">
 
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.07);">
-              <span style="font-size:12px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1.2px;min-width:140px;">Account Name</span>
-              <span style="font-size:15px;font-weight:600;color:white;text-align:right;">Gale Worldwide Movers P Ltd</span>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid var(--border);">
+              <span style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;min-width:140px;">Account Name</span>
+              <span style="font-size:15px;font-weight:600;color:var(--text);text-align:right;">Gale Worldwide Movers P Ltd</span>
             </div>
 
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.07);">
-              <span style="font-size:12px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1.2px;min-width:140px;">Bank</span>
-              <span style="font-size:15px;font-weight:600;color:white;text-align:right;">State Bank of India (SBI)</span>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid var(--border);">
+              <span style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;min-width:140px;">Bank</span>
+              <span style="font-size:15px;font-weight:600;color:var(--text);text-align:right;">State Bank of India (SBI)</span>
             </div>
 
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.07);">
-              <span style="font-size:12px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1.2px;min-width:140px;">Account Number</span>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid var(--border);">
+              <span style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;min-width:140px;">Account Number</span>
               <div style="text-align:right;">
-                <div style="font-size:14px;color:rgba(255,255,255,0.5);margin-bottom:4px;font-style:italic;">Shared securely on request</div>
+                <div style="font-size:14px;color:var(--muted);margin-bottom:4px;font-style:italic;">Shared securely on request</div>
                 <div style="display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;">
-                  <a href="tel:+918826175064" style="background:rgba(45,198,94,0.2);border:1px solid rgba(45,198,94,0.4);color:var(--accent);padding:5px 12px;border-radius:100px;font-size:12px;font-weight:600;text-decoration:none;">Call +91 88261 75064</a>
-                  <a href="mailto:bhcsc@galebestways.com" style="background:rgba(45,198,94,0.2);border:1px solid rgba(45,198,94,0.4);color:var(--accent);padding:5px 12px;border-radius:100px;font-size:12px;font-weight:600;text-decoration:none;">Email Rekha</a>
+                  <a href="tel:+917042637566" style="background:rgba(45,198,94,0.15);border:1px solid rgba(45,198,94,0.4);color:var(--green);padding:5px 12px;border-radius:100px;font-size:12px;font-weight:600;text-decoration:none;">Call +91 70426 37566</a>
+                  <a href="mailto:bhcsc@galebestways.com" style="background:rgba(45,198,94,0.15);border:1px solid rgba(45,198,94,0.4);color:var(--green);padding:5px 12px;border-radius:100px;font-size:12px;font-weight:600;text-decoration:none;">Email</a>
                 </div>
               </div>
             </div>
 
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.07);">
-              <span style="font-size:12px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1.2px;min-width:140px;">IFSC Code</span>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid var(--border);">
+              <span style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;min-width:140px;">IFSC Code</span>
               <div style="text-align:right;">
-                <div style="font-size:14px;color:rgba(255,255,255,0.5);margin-bottom:4px;font-style:italic;">Shared securely on request</div>
+                <div style="font-size:14px;color:var(--muted);margin-bottom:4px;font-style:italic;">Shared securely on request</div>
                 <div style="display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;">
-                  <a href="tel:+918826175064" style="background:rgba(45,198,94,0.2);border:1px solid rgba(45,198,94,0.4);color:var(--accent);padding:5px 12px;border-radius:100px;font-size:12px;font-weight:600;text-decoration:none;">Call +91 88261 75064</a>
-                  <a href="mailto:bhcsc@galebestways.com" style="background:rgba(45,198,94,0.2);border:1px solid rgba(45,198,94,0.4);color:var(--accent);padding:5px 12px;border-radius:100px;font-size:12px;font-weight:600;text-decoration:none;">Email Rekha</a>
+                  <a href="tel:+917042637566" style="background:rgba(45,198,94,0.15);border:1px solid rgba(45,198,94,0.4);color:var(--green);padding:5px 12px;border-radius:100px;font-size:12px;font-weight:600;text-decoration:none;">Call +91 70426 37566</a>
+                  <a href="mailto:bhcsc@galebestways.com" style="background:rgba(45,198,94,0.15);border:1px solid rgba(45,198,94,0.4);color:var(--green);padding:5px 12px;border-radius:100px;font-size:12px;font-weight:600;text-decoration:none;">Email</a>
                 </div>
               </div>
             </div>
 
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.07);">
-              <span style="font-size:12px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1.2px;min-width:140px;">UPI ID</span>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid var(--border);">
+              <span style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;min-width:140px;">UPI ID</span>
               <div style="display:flex;align-items:center;gap:10px;">
-                <span style="font-size:15px;font-weight:600;color:white;">galeworldwide@sbi</span>
-                <button onclick="copyText('galeworldwide@sbi',this)" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.6);padding:4px 12px;border-radius:4px;font-size:12px;cursor:pointer;">Copy</button>
+                <span style="font-size:15px;font-weight:600;color:var(--text);">galeworldwide@sbi</span>
+                <button onclick="copyText('galeworldwide@sbi',this)" style="background:var(--white);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:12px;cursor:pointer;">Copy</button>
               </div>
             </div>
 
             <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 0;">
-              <span style="font-size:12px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1.2px;min-width:140px;">Reference</span>
-              <span style="font-size:14px;font-weight:600;color:var(--accent);text-align:right;">Your booking / invoice number</span>
+              <span style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;min-width:140px;">Reference</span>
+              <span style="font-size:14px;font-weight:600;color:var(--green);text-align:right;">Your booking / invoice number</span>
             </div>
 
           </div>
@@ -2077,7 +2286,7 @@ function toggleFaq(btn) {
             <div style="width:36px;height:36px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:15px;flex-shrink:0;">2</div>
             <div>
               <div style="font-weight:700;font-size:15px;margin-bottom:4px;">Send Confirmation</div>
-              <div style="font-size:13px;color:var(--muted);line-height:1.6;">After payment, send a screenshot or UTR number to bhcsc@galebestways.com or WhatsApp +91 88261 75064.</div>
+              <div style="font-size:13px;color:var(--muted);line-height:1.6;">After payment, send a screenshot or UTR number to bhcsc@galebestways.com or WhatsApp +91 70426 37566.</div>
             </div>
           </div>
           <div style="display:flex;gap:14px;align-items:flex-start;">
@@ -2095,18 +2304,18 @@ function toggleFaq(btn) {
         <div style="font-size:22px;flex-shrink:0;">🔒</div>
         <div>
           <div style="font-weight:700;font-size:15px;margin-bottom:4px;color:var(--green);">Security Notice</div>
-          <div style="font-size:14px;color:var(--muted);line-height:1.6;">For your security, the full account number and IFSC code are not published online. They are shared directly by our finance team. Contact <a href="tel:+918826175064" style="color:var(--green);font-weight:600;text-decoration:none;">+91 88261 75064</a> or <a href="mailto:bhcsc@galebestways.com" style="color:var(--green);font-weight:600;text-decoration:none;">bhcsc@galebestways.com</a> to receive these details securely.</div>
+          <div style="font-size:14px;color:var(--muted);line-height:1.6;">For your security, the full account number and IFSC code are not published online. They are shared directly by our finance team. Contact <a href="tel:+917042637566" style="color:var(--green);font-weight:600;text-decoration:none;">+91 70426 37566</a> or <a href="mailto:bhcsc@galebestways.com" style="color:var(--green);font-weight:600;text-decoration:none;">bhcsc@galebestways.com</a> to receive these details securely.</div>
         </div>
       </div>
 
       <!-- Need help box -->
-      <div style="text-align:center;margin-top:48px;padding:48px;background:var(--dark);border-radius:14px;">
+      <div style="text-align:center;margin-top:48px;padding:48px;background:var(--gray);border-radius:14px;border:1px solid var(--border);">
         <div class="section-label" style="justify-content:center;color:var(--accent);margin-bottom:16px;">Need Help?</div>
         <h2 style="color:var(--text);margin-bottom:16px;font-size:32px;">Payment Support</h2>
-        <p style="color:rgba(255,255,255,0.55);font-size:15px;max-width:480px;margin:0 auto 32px;line-height:1.7;">Our finance team is available Monday to Saturday, 9am to 6pm IST. For urgent payment queries, call directly.</p>
+        <p style="color:var(--muted);font-size:15px;max-width:480px;margin:0 auto 32px;line-height:1.7;">Our finance team is available Monday to Saturday, 9am to 6pm IST. For urgent payment queries, call directly.</p>
         <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-          <a href="tel:+918826175064" class="btn-primary">Call +91 88261 75064</a>
-          <a href="mailto:bhcsc@galebestways.com" class="btn-outline" style="color:white;">Email Rekha</a>
+          <a href="tel:+917042637566" class="btn-primary">Call +91 70426 37566</a>
+          <a href="mailto:bhcsc@galebestways.com" class="btn-outline">Email</a>
         </div>
       </div>
 
@@ -2116,7 +2325,7 @@ function toggleFaq(btn) {
   <footer>
     <div class="footer-bottom" style="border-top:1px solid rgba(45,198,94,0.2);padding:28px 0 0;">
       <span>© 2025 Glacious Fresh - A Gale Worldwide Movers Brand.</span>
-      <a href="#" onclick="showPage('home')" style="color:rgba(255,255,255,0.4);text-decoration:none;">Back to Home</a>
+      <a href="#" onclick="showPage('home')" style="color:var(--muted);text-decoration:none;">Back to Home</a>
     </div>
   </footer>
 </div>
