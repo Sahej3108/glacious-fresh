@@ -81,7 +81,6 @@
     padding: 120px 5% 80px;
     position: relative; overflow: hidden;
   }
-  .hero-bg {
     position: absolute; inset: 0; z-index: 0;
     background: linear-gradient(160deg, #d4f0e0 0%, #e2f5ea 35%, #f0faf4 65%, #c8edda 100%);
   }
@@ -598,7 +597,7 @@
     .trust-badge-text .tb-sub { display: none; }
 
     /* HERO TEXT */
-    .hero-badge { font-size: 10px; padding: 5px 12px; letter-spacing: 0.8px; white-space: nowrap; display: inline-flex; max-width: 100%; }
+    .hero-badge { font-size: 10px; padding: 5px 12px; }
     .hero h1 { font-size: 42px !important; }
 
     /* PARTNERS */
@@ -798,8 +797,9 @@
     .nav-logo-icon { width: 36px; height: 36px; font-size: 12px; }
 
     /* HERO */
-    .hero { padding: 90px 4% 50px; }
-    .hero h1 { font-size: 38px !important; line-height: 1; letter-spacing: -0.5px; }
+    .hero { padding: 90px 4% 50px; overflow: visible; }
+    .hero-content { overflow: visible; width: 100%; }
+    .hero-badge { font-size: 11px; padding: 6px 14px; letter-spacing: 0.5px; white-space: nowrap; display: inline-flex; max-width: calc(100vw - 32px); overflow: visible; }
     .hero p { font-size: 14px !important; }
     .hero-btns { flex-direction: column; gap: 10px; }
     .hero-btns a, .hero-btns button { width: 100%; justify-content: center; text-align: center; }
