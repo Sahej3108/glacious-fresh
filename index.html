@@ -808,7 +808,6 @@
     section { padding: 48px 4% !important; }
     h2 { font-size: 28px !important; }
     h3 { font-size: 20px !important; }
-    p { font-size: 14px !important; }
 
     /* GRIDS — all collapse to single column */
     .grid-2, .grid-3, .grid-4,
@@ -840,8 +839,6 @@
 
     /* PAN INDIA SECTION */
     [style*="NATIONWIDE COVERAGE"] { font-size: 10px !important; }
-    [style*="padding:100px 5%"] { padding: 48px 4% !important; }
-    [style*="padding:80px 5%"] { padding: 48px 4% !important; }
 
     /* ABOUT SECTION */
     .about-img { min-height: 200px !important; box-shadow: 4px 4px 0 var(--green-light) !important; }
@@ -918,12 +915,12 @@
     /* SECTION LABELS */
     .section-label { font-size: 10px !important; letter-spacing: 1.2px !important; }
 
-    /* INLINE PADDING OVERRIDES for sections using inline styles */
-    [style*="padding:80px"] { padding: 48px 4% !important; }
-    [style*="padding:100px"] { padding: 60px 4% !important; }
+    /* INLINE PADDING OVERRIDES - only target wrapping sections, not cards */
+    [style*="padding:100px 5%"] { padding: 60px 4% !important; }
+    [style*="padding:80px 5%"] { padding: 48px 4% !important; }
     [style*="padding:60px 5%"] { padding: 40px 4% !important; }
     [style*="padding:48px 5%"] { padding: 36px 4% !important; }
-    [style*="padding:36px"] { padding: 24px !important; }
+    [style*="padding:72px 5%"] { padding: 48px 4% !important; }
 
     /* INLINE max-width overrides */
     [style*="max-width:1200px"], [style*="max-width:1400px"], [style*="max-width:900px"] {
@@ -944,13 +941,10 @@
     .cb-phone { font-size: 13px !important; }
     .cb-btn { font-size: 12px !important; padding: 6px 12px !important; }
 
-    /* CARD PADDINGS */
-    [style*="padding:32px"] { padding: 20px !important; }
-    [style*="padding:48px"] { padding: 28px !important; }
-    [style*="padding:40px"] { padding: 24px !important; }
+    /* CARD PADDINGS - only apply to white/gray cards */
+    .service-card, .feature-card, .why-card { padding: 20px !important; }
 
     /* MAP SECTION */
-    [style*="NATIONWIDE"] { font-size: 10px !important; }
 
     /* NEED HELP BOX */
     [style*="text-align:center;margin-top:48px"] { padding: 32px 20px !important; }
