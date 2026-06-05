@@ -1504,6 +1504,60 @@
 </div>
 
 <!-- CONTACT PAGE -->
+  <script>
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycby8YLXNrEmAt_Q-xwu7ofgmnTdCyOBb8CxPbBxzNVmf4VGOJFly3Sb6zD_0IDQaUMurKA/exec';
+
+  function submitQuote() {
+    const firstName = document.querySelector('input[placeholder="Arun"]').value.trim();
+    const lastName = document.querySelector('input[placeholder="Kumar"]').value.trim();
+    const company = document.querySelector('input[placeholder="Your Company"]').value.trim();
+    const phone = document.querySelector('input[placeholder="+91 98765 43210"]').value.trim();
+    const email = document.querySelector('input[placeholder="you@company.com"]').value.trim();
+    const serviceType = document.querySelectorAll('select')[0].value;
+    const tempRange = document.querySelectorAll('select')[1].value;
+    const origin = document.querySelectorAll('input[placeholder="City, Country"]')[0].value.trim();
+    const destination = document.querySelectorAll('input[placeholder="City, Country"]')[1].value.trim();
+    const cargo = document.querySelector('textarea').value.trim();
+
+    // Basic validation
+    if (!firstName || !phone) {
+      alert('Please fill in your name and phone number.');
+      return;
+    }
+
+    // Button loading state
+    const btn = document.querySelector('button.btn-primary');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    const data = {
+      firstName, lastName, company, phone,
+      email, serviceType, tempRange,
+      origin, destination, cargo
+    };
+
+    fetch(SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(() => {
+      btn.textContent = '✅ Quote Sent Successfully!';
+      btn.style.background = '#25d366';
+      btn.disabled = false;
+
+      // Clear form
+      document.querySelectorAll('input').forEach(i => i.value = '');
+      document.querySelector('textarea').value = '';
+    })
+    .catch(() => {
+      btn.textContent = '❌ Failed. Try Again.';
+      btn.style.background = 'red';
+      btn.disabled = false;
+    });
+  }
+</script>
 <div id="page-contact" class="page">
   <div style="background:var(--dark);padding:140px 5% 80px;">
     <div class="section-label" style="color:var(--green);">Get In Touch</div>
