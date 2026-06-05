@@ -1592,7 +1592,54 @@
     </div>
   </section>
 
-  
+  <script>
+  function submitQuote() {
+    const firstName = document.querySelector('input[placeholder="Arun"]').value.trim();
+    const lastName = document.querySelector('input[placeholder="Kumar"]').value.trim();
+    const company = document.querySelector('input[placeholder="Your Company"]').value.trim();
+    const phone = document.querySelector('input[placeholder="+91 98765 43210"]').value.trim();
+    const email = document.querySelector('input[placeholder="you@company.com"]').value.trim();
+    const serviceType = document.querySelectorAll('select')[0].value;
+    const tempRange = document.querySelectorAll('select')[1].value;
+    const origin = document.querySelectorAll('input[placeholder="City, Country"]')[0].value.trim();
+    const destination = document.querySelectorAll('input[placeholder="City, Country"]')[1].value.trim();
+    const cargo = document.querySelector('textarea').value.trim();
+
+    // Basic validation
+    if (!firstName || !phone) {
+      alert('Please fill in your name and phone number.');
+      return;
+    }
+
+    const subject = `New Quote Request - ${firstName} ${lastName}`;
+
+    const body = 
+`New Quote Request – Glacious Fresh
+=====================================
+
+CUSTOMER DETAILS
+----------------
+Name:     ${firstName} ${lastName}
+Company:  ${company || 'N/A'}
+Phone:    ${phone}
+Email:    ${email || 'N/A'}
+
+SHIPMENT DETAILS
+----------------
+Service:      ${serviceType}
+Temperature:  ${tempRange}
+Origin:       ${origin || 'N/A'}
+Destination:  ${destination || 'N/A'}
+
+CARGO DETAILS
+-------------
+${cargo || 'N/A'}`;
+
+    const mailtoLink = `mailto:sahejmalhotra29202@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    window.location.href = mailtoLink;
+  }
+</script>
   <footer>
     <div class="footer-bottom" style="border-top:1px solid rgba(45,198,94,0.2);padding:28px 0 0;">
       <span>© 2025 Glacious Fresh™ - A Gale Worldwide Movers Brand.</span>
