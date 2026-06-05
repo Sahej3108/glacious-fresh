@@ -1592,6 +1592,46 @@
     </div>
   </section>
 
+  <script>
+  function submitQuote() {
+    const firstName = document.querySelector('input[placeholder="Arun"]').value.trim();
+    const lastName = document.querySelector('input[placeholder="Kumar"]').value.trim();
+    const company = document.querySelector('input[placeholder="Your Company"]').value.trim();
+    const phone = document.querySelector('input[placeholder="+91 98765 43210"]').value.trim();
+    const email = document.querySelector('input[placeholder="you@company.com"]').value.trim();
+    const serviceType = document.querySelectorAll('select')[0].value;
+    const tempRange = document.querySelectorAll('select')[1].value;
+    const origin = document.querySelector('input[placeholder="City, Country"]').value.trim();
+    const destination = document.querySelectorAll('input[placeholder="City, Country"]')[1].value.trim();
+    const cargo = document.querySelector('textarea').value.trim();
+
+    if (!firstName || !phone) {
+      alert('Please fill in at least your name and phone number.');
+      return;
+    }
+
+    const message = 
+`🚚 *New Quote Request – Glacious Fresh*
+
+👤 *Name:* ${firstName} ${lastName}
+🏢 *Company:* ${company || 'N/A'}
+📞 *Phone:* ${phone}
+📧 *Email:* ${email || 'N/A'}
+
+📦 *Service:* ${serviceType}
+🌡️ *Temperature:* ${tempRange}
+📍 *Origin:* ${origin || 'N/A'}
+📍 *Destination:* ${destination || 'N/A'}
+
+📝 *Cargo Details:*
+${cargo || 'N/A'}`;
+
+    const whatsappNumber = '+91 8920108362'; // Change to your number (with country code, no +)
+    const encoded = encodeURIComponent(message);
+    window.open(`https://wa.me/${whatsappNumber}?text=${encoded}`, '_blank');
+  }
+</script>
+
   <footer>
     <div class="footer-bottom" style="border-top:1px solid rgba(45,198,94,0.2);padding:28px 0 0;">
       <span>© 2025 Glacious Fresh™ - A Gale Worldwide Movers Brand.</span>
