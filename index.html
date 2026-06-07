@@ -1659,7 +1659,7 @@
             <div class="form-group"><label>Origin</label><input type="text" placeholder="City, Country"></div>
             <div class="form-group"><label>Destination</label><input type="text" placeholder="City, Country"></div>
           </div>
-          <div class="form-group"><label>Cargo Details</label><textarea placeholder="Describe your cargo, weight, volume, special requirements..."></textarea></div>
+          <div class="form-group"><label>Cargo Details</label><textarea id="cargoDetails" placeholder="Describe your cargo, weight, volume, special requirements..."></textarea></div>
           <button class="btn-primary" style="width:100%;justify-content:center;font-size:16px;" onclick="submitQuote()">Send Quote Request →</button>
           <p style="font-size:12px;color:var(--muted);text-align:center;margin-top:16px;">We'll respond within 2 hours. No commitment required.</p>
         </div>
@@ -1720,12 +1720,13 @@ async function submitQuote() {
 
   try {
     await fetch('https://script.google.com/macros/s/AKfycbxsBOEvI2tnS4mqh1pmUu0gezt8uGnrDpcDNogA_jP4/dev', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    });
+  method: 'POST',
+  mode: 'no-cors',
+  headers: {
+    'Content-Type': 'text/plain'
+  },
+  body: JSON.stringify(data)
+});
 
     alert('Thank you! Your quote request has been submitted. We will contact you shortly.');
 
