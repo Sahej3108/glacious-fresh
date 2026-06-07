@@ -1604,33 +1604,56 @@
         <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:48px;box-shadow:0 4px 24px rgba(0,0,0,0.05);">
           <h3 style="font-family:'Arial Narrow','Arial',sans-serif;font-weight:800;font-size:26px;text-transform:uppercase;margin-bottom:28px;">Get A Quote</h3>
           <div class="form-row">
-            <div class="form-group"><label>First Name</label><input type="text" placeholder="Arun"></div>
-            <div class="form-group"><label>Last Name</label><input type="text" placeholder="Kumar"></div>
-          </div>
-          <div class="form-row">
-            <div class="form-group"><label>Company</label><input type="text" placeholder="Your Company"></div>
-            <div class="form-group"><label>Phone</label><input type="tel" placeholder="+91 98765 43210"></div>
-          </div>
-          <div class="form-group"><label>Email</label><input type="email" placeholder="you@company.com"></div>
-          <div class="form-row">
-            <div class="form-group"><label>Service Type</label>
-              <select>
-                <option>Road Freight</option>
-                <option>Air Freight</option>
-                <option>Sea Freight</option>
-                <option>Cold Storage</option>
-                <option>Multi-Modal</option>
-              </select>
-            </div>
-            <div class="form-group"><label>Temperature Range</label>
-              <select>
-                <option>Deep Frozen (-25°C)</option>
-                <option>Frozen (-18°C)</option>
-                <option>Chilled (0-8°C)</option>
-                <option>Controlled Ambient</option>
-              </select>
-            </div>
-          </div>
+  <div class="form-group">
+    <label>First Name</label>
+    <input type="text" id="firstName" placeholder="Arun">
+  </div>
+
+  <div class="form-group">
+    <label>Last Name</label>
+    <input type="text" id="lastName" placeholder="Kumar">
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="form-group">
+    <label>Company</label>
+    <input type="text" id="company" placeholder="Your Company">
+  </div>
+
+  <div class="form-group">
+    <label>Phone</label>
+    <input type="tel" id="phone" placeholder="+91 98765 43210">
+  </div>
+</div>
+
+<div class="form-group">
+  <label>Email</label>
+  <input type="email" id="email" placeholder="you@company.com">
+</div>
+
+<div class="form-row">
+  <div class="form-group">
+    <label>Service Type</label>
+    <select id="serviceType">
+      <option>Road Freight</option>
+      <option>Air Freight</option>
+      <option>Sea Freight</option>
+      <option>Cold Storage</option>
+      <option>Multi-Modal</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>Temperature Range</label>
+    <select id="temperatureRange">
+      <option>Deep Frozen (-25°C)</option>
+      <option>Frozen (-18°C)</option>
+      <option>Chilled (0-8°C)</option>
+      <option>Controlled Ambient</option>
+    </select>
+  </div>
+</div>
           <div class="form-row">
             <div class="form-group"><label>Origin</label><input type="text" placeholder="City, Country"></div>
             <div class="form-group"><label>Destination</label><input type="text" placeholder="City, Country"></div>
@@ -1681,8 +1704,27 @@ function trackShipment() {
   result.scrollIntoView({behavior: 'smooth', block: 'start'});
 }
 
-function submitQuote() {
-  alert('Thank you! Your quote request has been submitted. Our cold chain specialist will contact you within 2 hours.');
+async function submitQuote() {
+
+  const data = {
+    firstName: document.getElementById('firstName').value,
+    lastName: document.getElementById('lastName').value,
+    company: document.getElementById('company').value,
+    phone: document.getElementById('phone').value,
+    email: document.getElementById('email').value,
+    cargoDetails: document.getElementById('cargoDetails').value
+  };
+
+  try {
+    await fetch('YOUR_GOOGLE_SCRIPT_WEBAPP_URL', {
+      method: 'POST',
+      body: JSON.stringify(data)
+    });
+
+    alert('Thank you! Your quote request has been submitted.');
+  } catch (err) {
+    alert('Failed to submit form.');
+  }
 }
 
 document.querySelectorAll('a[data-page]').forEach(function(a) {
