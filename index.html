@@ -1712,18 +1712,25 @@ async function submitQuote() {
     company: document.getElementById('company').value,
     phone: document.getElementById('phone').value,
     email: document.getElementById('email').value,
+    serviceType: document.getElementById('serviceType').value,
+    temperatureRange: document.getElementById('temperatureRange').value,
     cargoDetails: document.getElementById('cargoDetails').value
   };
 
   try {
-    await fetch('YOUR_GOOGLE_SCRIPT_WEBAPP_URL', {
+    await fetch('https://script.google.com/macros/s/AKfycbxsBOEvI2tnS4mqh1pmUu0gezt8uGnrDpcDNogA_jP4/dev', {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify(data)
     });
 
-    alert('Thank you! Your quote request has been submitted.');
-  } catch (err) {
-    alert('Failed to submit form.');
+    alert('Thank you! Your quote request has been submitted. We will contact you shortly.');
+
+  } catch (error) {
+    console.error(error);
+    alert('Unable to submit form. Please try again.');
   }
 }
 
