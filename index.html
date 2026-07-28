@@ -28,6 +28,44 @@
   html { scroll-behavior: smooth; color-scheme: light only; }
   body { font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; -webkit-text-size-adjust: 100%; }
 
+
+   .social-links{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-left:15px;
+}
+
+.social-links a{
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    text-decoration:none;
+    transition:.3s;
+    font-size:18px;
+}
+
+.social-links a:nth-child(1){
+    background:#0077b5; /* LinkedIn */
+}
+
+.social-links a:nth-child(2){
+    background:#E4405F; /* Instagram */
+}
+
+.social-links a:nth-child(3){
+    background:#1877F2; /* Facebook */
+}
+
+.social-links a:hover{
+    transform:translateY(-2px);
+    opacity:.9;
+}
+  
   /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
@@ -624,6 +662,7 @@
     .grid-2[style*="gap:80px"] { gap: 36px !important; }
 
   }
+  
 
   @media (max-width: 768px) {
     .payment-grid { grid-template-columns: 1fr !important; }
